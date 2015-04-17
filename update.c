@@ -2,6 +2,19 @@
 #include "ubi.h"
 #include "fastscan.h"
 /**
+ 	计算快扫描元数据长度，分配内存空间
+ */
+size_t fastscan_calc_fs_size(struct ubi_device *ubi)
+{
+	size_t size;
+	size = sizeof(struct fastscan_metadata_hdr) + \
+		   sizeof(struct fastscan_metadata_wl) * ubi->peb_count + \
+		   sizeof(struct fastscan_metadata_vol_info) * UBI_MAX_VOLUMES + \
+		   sizeof(struct fastscan_metadata_eba) * UBI_MAX_VOLUMES + \
+		   sizeof(__be32) * ubi->peb_count;
+	return roundup(size, ubi->leb_size);
+}
+/**
  *	分配vid header
  *	内部删除卷
  *	卷ID = 布局卷 + 1
@@ -21,9 +34,17 @@ out:
 	return new;
 }
 
-struct ubi_wl_entry* fastscan_alloc_pebs(struct ubi_device *ubi)
+struct ubi_wl_entry *fastscan_alloc_pebs(struct ubi_device *ubi)
 {
+	struct ubi_wl_entry *pebs;
 
+	pebs = fastscan_find_pebs(&ubi->free); 
+	if(!pebs)
+	{
+		ubi_msg("failed to alloc pebs");
+		return NULL;
+	}
+	return pebs;
 }
 
 int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
@@ -38,20 +59,31 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	struct ubi_work *ubi_wrk;
 	struct ubi_volume *vol;
 
+	int free_peb_count;
+	int used_peb_count; 
+	int scrub_peb_count; 
+	int erase_peb_count;
+	int bad_peb_count; 
+	int vol_count; 
+
 	struct fastscan_metadata_hdr *fs_meta_hdr;
-	int free_peb_count, used_peb_count, scrub_peb_count, erase_peb_count, vol_count; 
 	struct fastscan_metadata_wl *fs_meta_wl;
 	struct fastscan_metadata_vol_info *fs_meta_vol_info;
 	struct fastscan_metadata_eba *fs_meta_eba;
 
 	/***********写缓冲区初始化***********/
+	ubi_msg("init fs_buf");
+	ubi_assert(ubi->fs_buf);
+
 	fs_raw = ubi->fs_buf;
 	memset(ubi->fs_buf, 0, ubi->fs_size);
 
 	/***********分配元数据内部卷头部***********/
+	ubi_msg("alloc fastscan volume header");
 	fs_vhdr = new_fs_hdr(ubi, UBI_FASTSCAN_VOLUME_ID);
 	if(!fs_vhdr)
 	{
+		ubi_msg("failed to alloc fastscan volume header");
 		ret = -ENOMEM;	
 		goto out;
 	}		
@@ -60,6 +92,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	spin_lock(&ubi->wl_lock);
 
 	/***********初始化第一段数据：fastscan_metadata_hdr对应内容***********/
+	ubi_msg("alloc fastscan_metadata_hdr");
 	fs_meta_hdr = (struct fastscan_metadata_hdr *)fs_raw;
 	fs_pos += sizeof(*fs_meta_hdr);
 	ubi_assert(fs_pos <= ubi->fs_size);
@@ -69,9 +102,11 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	used_peb_count = 0;
 	scrub_peb_count = 0;
 	erase_peb_count = 0;
+	bad_peb_count = 0;
 	vol_count = 0;
 
 	/***********收集free红黑树的擦除信息填充到fs_raw,同时累加空闲的擦出块数***********/
+	ubi_msg("collect pnum and ec data of free PEB from free red black tree");
 	for(node = rb_first(&ubi->free); node; node = rb_next(node))
 	{
 		wl_e = rb_entry(node, struct ubi_wl_entry, u.rb);
@@ -86,6 +121,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	}
 	fs_meta_hdr->free_peb_count = cpu_to_be32(free_peb_count);
 
+	ubi_msg("collect pnum and ec data of used PEB from used red black tree");
 	for(node = rb_first(&ubi->used); node; node = rb_next(node))
 	{
 		wl_e = rb_entry(node, struct ubi_wl_entry, u.rb);
@@ -100,6 +136,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	}
 	fs_meta_hdr->used_peb_count = cpu_to_be32(used_peb_count);
 
+	ubi_msg("collect pnum and ec data of scrub PEB from scrub red black tree");
 	for(node = rb_first(&ubi->scrub); node; node = rb_next(node))
 	{
 		wl_e = rb_entry(node, struct ubi_wl_entry, u.rb);
@@ -115,6 +152,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	fs_meta_hdr->scrub_peb_count = cpu_to_be32(scrub_peb_count);
 
 	/***********从WL子系统工作队列中收集erase状态的擦除块信息填入fs_raw***********/
+	ubi_msg("collect pnum and ec data of erase PEB from WL subsystem work queue");
 	list_for_each_entry(ubi_wrk, &ubi->works, list)
 	{
 		if(ubi_is_erase_work(ubi_wrk))
@@ -135,6 +173,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	fs_meta_hdr->erase_peb_count = cpu_to_be32(erase_peb_count);
 
 	/***********collect volume-related metadata to fullfill the fs_raw***********/
+	ubi_msg("collect volume-related data from ubi->volumes");
 	for(i = 0; i < UBI_MAX_VOLUMES + UBI_INT_VOL_COUNT; i++)
 	{
 		vol = ubi->volumes[i];
@@ -164,15 +203,61 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 		fs_meta_eba->peb_num = cpu_to_be32(j);
 	}
 	fs_meta_hdr->vol_count = cpu_to_be32(vol_count);
+	fs_meta_hdr->bad_peb_count = cpu_to_be32(ubi->bad_peb_count);
+	ubi_msg("collect data done!");
+
+	spin_unlock(&ubi->wl_lock);
+	spin_unlock(&ubi->volumes_lock);
+
+	/***********写卷头部到4个PEB***********/
+	ubi_msg("writing fastscan volume header to Flash");
+	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
+	{
+		fs_vhdr->sqnum = cpu_to_be32(ubi_next_sqnum(ubi));
+		fs_vhdr->lnum = i;
+		ubi_msg("writing fastscan volume header to PEB %d, sqnum %llu", 
+						pebs[i]->pnum, fs_vhdr->sqnum);
+		ret = ubi_io_write_vid_hdr(ubi, pebs[i]->pnum, fs_vhdr);
+		if(!ret)
+		{
+			ubi_msg("failed to write fs_vhdr to PEB %i",pebs[i]->pnum); 
+			goto out_kfree;
+		}
+	}
+	
+	/***********写元数据到4个PEB***********/
+	ubi_msg("writing fastscan data to Flash");
+	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
+	{
+		ret = ubi_io_write(ubi, fs_raw + (i * ubi->leb_size), 
+						pebs[i]->pnum, ubi->leb_start, ubi->leb_size);	
+		if(!ret)
+		{
+			ubi_msg("failed to write data to PEB %i",pebs[i]->pnum); 
+			goto out_kfree;
+		}
+	}
+	
+	ubi_assert(pebs);
+	ubi->pebs = pebs;
+	ubi_msg("write fastscan done!");
 
 out_kfree:
 	ubi_free_vid_hdr(ubi, fs_vhdr);
 out:
 	return ret;
 }
-
+/**
+ *
+ */
 int fastscan_update_metadata(struct ubi_device *ubi)
 {
+	struct ubi_wl_entry *pebs;
 
+	pebs = fastscan_alloc_pebs(ubi);
+	if(!pebs)
+	{
+		return 
+	}
 }
 

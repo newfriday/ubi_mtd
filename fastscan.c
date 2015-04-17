@@ -1,18 +1,5 @@
 #include "ubi.h"
 /*
- 	计算快扫描元数据长度，分配内存空间
- */
-size_t fastscan_calc_fs_size(struct ubi_device *ubi)
-{
-	size_t size;
-	size = sizeof(struct fastscan_metadata_hdr) + \
-		   sizeof(struct fastscan_metadata_wl) * ubi->peb_count + \
-		   sizeof(struct fastscan_metadata_vol_info) * UBI_MAX_VOLUMES + \
-		   sizeof(struct fastscan_metadata_eba) * UBI_MAX_VOLUMES + \
-		   sizeof(__be32) * ubi->peb_count;
-	return roundup(size, ubi->leb_size);
-}
-/*
  	读取PEB卷头部信息
 	成功：0
 	失败：负数
