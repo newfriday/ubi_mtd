@@ -1,0 +1,617 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+DBG_DISABLE_BGT	debug.h	166;"	d
+DBG_DISABLE_BGT	debug.h	97;"	d
+DBG_DISABLE_BGT	debug.h	99;"	d
+EBA_RESERVED_PEBS	eba.c	50;"	d	file:
+MIN_RESEVED_PEBS	ubi.h	62;"	d
+MTD_PARAM_LEN_MAX	build.c	49;"	d	file:
+UBI_BGT_NAME_PATTERN	ubi.h	65;"	d
+UBI_COMPAT_DELETE	ubi-media.h	/^	UBI_COMPAT_DELETE   = 1,$/;"	e	enum:__anon5
+UBI_COMPAT_PRESERVE	ubi-media.h	/^	UBI_COMPAT_PRESERVE = 4,$/;"	e	enum:__anon5
+UBI_COMPAT_REJECT	ubi-media.h	/^	UBI_COMPAT_REJECT   = 5$/;"	e	enum:__anon5
+UBI_COMPAT_RO	ubi-media.h	/^	UBI_COMPAT_RO       = 2,$/;"	e	enum:__anon5
+UBI_CRC32_INIT	ubi-media.h	42;"	d
+UBI_EC_HDR_MAGIC	ubi-media.h	45;"	d
+UBI_EC_HDR_SIZE	ubi-media.h	116;"	d
+UBI_EC_HDR_SIZE_CRC	ubi-media.h	120;"	d
+UBI_FASTSCAN_EBA_MAGIC	fastscan.h	14;"	d
+UBI_FASTSCAN_END	fastscan.h	2;"	d
+UBI_FASTSCAN_HDR_MAGIC	fastscan.h	10;"	d
+UBI_FASTSCAN_VOLUME_ALIGN	fastscan.h	5;"	d
+UBI_FASTSCAN_VOLUME_COMPAT	fastscan.h	8;"	d
+UBI_FASTSCAN_VOLUME_EBA	fastscan.h	6;"	d
+UBI_FASTSCAN_VOLUME_ID	fastscan.h	3;"	d
+UBI_FASTSCAN_VOLUME_NAME	fastscan.h	7;"	d
+UBI_FASTSCAN_VOLUME_TYPE	fastscan.h	4;"	d
+UBI_FASTSCAN_VOL_MAGIC	fastscan.h	12;"	d
+UBI_INTERNAL_VOL_START	ubi-media.h	294;"	d
+UBI_INT_VOL_COUNT	ubi-media.h	288;"	d
+UBI_IO_BAD_EC_HDR	ubi.h	/^	UBI_IO_BAD_EC_HDR,$/;"	e	enum:__anon1
+UBI_IO_BAD_VID_HDR	ubi.h	/^	UBI_IO_BAD_VID_HDR,$/;"	e	enum:__anon1
+UBI_IO_BITFLIPS	ubi.h	/^	UBI_IO_BITFLIPS$/;"	e	enum:__anon1
+UBI_IO_DEBUG	debug.h	165;"	d
+UBI_IO_DEBUG	debug.h	90;"	d
+UBI_IO_DEBUG	debug.h	93;"	d
+UBI_IO_PEB_EMPTY	ubi.h	/^	UBI_IO_PEB_EMPTY = 1,$/;"	e	enum:__anon1
+UBI_IO_PEB_FREE	ubi.h	/^	UBI_IO_PEB_FREE,$/;"	e	enum:__anon1
+UBI_IO_RETRIES	ubi.h	74;"	d
+UBI_LAYOUT_VOLUME_ALIGN	ubi-media.h	300;"	d
+UBI_LAYOUT_VOLUME_COMPAT	ubi-media.h	303;"	d
+UBI_LAYOUT_VOLUME_EBS	ubi-media.h	301;"	d
+UBI_LAYOUT_VOLUME_ID	ubi-media.h	298;"	d
+UBI_LAYOUT_VOLUME_NAME	ubi-media.h	302;"	d
+UBI_LAYOUT_VOLUME_TYPE	ubi-media.h	299;"	d
+UBI_LEB_UNMAPPED	ubi.h	68;"	d
+UBI_MAX_DEVICES	ubi.h	47;"	d
+UBI_MAX_ERASECOUNTER	ubi-media.h	39;"	d
+UBI_MAX_VOLUMES	ubi-media.h	306;"	d
+UBI_NAME_STR	ubi.h	50;"	d
+UBI_PROT_QUEUE_LEN	ubi.h	81;"	d
+UBI_SCAN_UNKNOWN_EC	scan.h	25;"	d
+UBI_VERSION	ubi-media.h	36;"	d
+UBI_VID_DYNAMIC	ubi-media.h	/^	UBI_VID_DYNAMIC = 1,$/;"	e	enum:__anon3
+UBI_VID_HDR_MAGIC	ubi-media.h	47;"	d
+UBI_VID_HDR_SIZE	ubi-media.h	117;"	d
+UBI_VID_HDR_SIZE_CRC	ubi-media.h	121;"	d
+UBI_VID_STATIC	ubi-media.h	/^	UBI_VID_STATIC  = 2$/;"	e	enum:__anon3
+UBI_VOL_NAME_MAX	ubi-media.h	309;"	d
+UBI_VTBL_AUTORESIZE_FLG	ubi-media.h	/^	UBI_VTBL_AUTORESIZE_FLG = 0x01,$/;"	e	enum:__anon4
+UBI_VTBL_RECORD_SIZE	ubi-media.h	312;"	d
+UBI_VTBL_RECORD_SIZE_CRC	ubi-media.h	315;"	d
+UBI_WL_THRESHOLD	wl.c	121;"	d	file:
+WL_FREE_MAX_DIFF	wl.c	134;"	d	file:
+WL_MAX_FAILURES	wl.c	140;"	d	file:
+WL_RESERVED_PEBS	wl.c	113;"	d	file:
+__UBI_DEBUG_H__	debug.h	22;"	d
+__UBI_MEDIA_H__	ubi-media.h	31;"	d
+__UBI_SCAN_H__	scan.h	22;"	d
+__UBI_UBI_H__	ubi.h	23;"	d
+__packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_eba
+__packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_hdr
+__packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_vol_info
+__packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_wl
+add_to_list	scan.c	/^static int add_to_list(struct ubi_scan_info *si, int pnum, int ec,$/;"	f	file:
+add_volume	scan.c	/^static struct ubi_scan_volume *add_volume(struct ubi_scan_info *si, int vol_id,$/;"	f	file:
+alc_mutex	ubi.h	/^	struct mutex alc_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+alien	scan.h	/^	struct list_head alien;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::list_head
+alien_peb_count	scan.h	/^	int alien_peb_count;$/;"	m	struct:ubi_scan_info
+alignment	ubi-media.h	/^	__be32  alignment;$/;"	m	struct:ubi_vtbl_record
+alignment	ubi.h	/^	int alignment;$/;"	m	struct:ubi_volume
+attach_by_scanning	build.c	/^static int attach_by_scanning(struct ubi_device *ubi)$/;"	f	file:
+attr_vol_alignment	vmt.c	/^static struct device_attribute attr_vol_alignment =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_corrupted	vmt.c	/^static struct device_attribute attr_vol_corrupted =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_data_bytes	vmt.c	/^static struct device_attribute attr_vol_data_bytes =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_name	vmt.c	/^static struct device_attribute attr_vol_name =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_reserved_ebs	vmt.c	/^static struct device_attribute attr_vol_reserved_ebs =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_type	vmt.c	/^static struct device_attribute attr_vol_type =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_upd_marker	vmt.c	/^static struct device_attribute attr_vol_upd_marker =$/;"	v	typeref:struct:device_attribute	file:
+attr_vol_usable_eb_size	vmt.c	/^static struct device_attribute attr_vol_usable_eb_size =$/;"	v	typeref:struct:device_attribute	file:
+autoresize	build.c	/^static int autoresize(struct ubi_device *ubi, int vol_id)$/;"	f	file:
+autoresize_vol_id	ubi.h	/^	int autoresize_vol_id;$/;"	m	struct:ubi_device
+avail_pebs	ubi.h	/^	int avail_pebs;$/;"	m	struct:ubi_device
+bad_allowed	ubi.h	/^	int bad_allowed;$/;"	m	struct:ubi_device
+bad_peb_count	scan.h	/^	int bad_peb_count;$/;"	m	struct:ubi_scan_info
+bad_peb_count	ubi.h	/^	int bad_peb_count;$/;"	m	struct:ubi_device
+beb_rsvd_level	ubi.h	/^	int beb_rsvd_level;$/;"	m	struct:ubi_device
+beb_rsvd_pebs	ubi.h	/^	int beb_rsvd_pebs;$/;"	m	struct:ubi_device
+bgt_name	ubi.h	/^	char bgt_name[sizeof(UBI_BGT_NAME_PATTERN)+2];$/;"	m	struct:ubi_device
+bgt_thread	ubi.h	/^	struct task_struct *bgt_thread;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::task_struct
+buf_mutex	ubi.h	/^	struct mutex buf_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+bytes_str_to_int	build.c	/^static int __init bytes_str_to_int(const char *str)$/;"	f	file:
+cancel_pending	wl.c	/^static void cancel_pending(struct ubi_device *ubi)$/;"	f	file:
+cdev	ubi.h	/^	struct cdev cdev;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::cdev
+cdev	ubi.h	/^	struct cdev cdev;$/;"	m	struct:ubi_volume	typeref:struct:ubi_volume::cdev
+ch_dtype	ubi.h	/^	int ch_dtype;$/;"	m	struct:ubi_volume
+ch_lnum	ubi.h	/^	int ch_lnum;$/;"	m	struct:ubi_volume
+changing_leb	ubi.h	/^	unsigned int changing_leb:1;$/;"	m	struct:ubi_volume
+check_pattern	io.c	/^static int check_pattern(const void *buf, uint8_t patt, int size)$/;"	f	file:
+check_scanning_info	vtbl.c	/^static int check_scanning_info(const struct ubi_device *ubi,$/;"	f	file:
+check_sv	vtbl.c	/^static int check_sv(const struct ubi_volume *vol,$/;"	f	file:
+checked	ubi.h	/^	unsigned int checked:1;$/;"	m	struct:ubi_volume
+ckvol_mutex	ubi.h	/^	struct mutex ckvol_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+clear_update_marker	upd.c	/^static int clear_update_marker(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f	file:
+compare_lebs	scan.c	/^static int compare_lebs(struct ubi_device *ubi, const struct ubi_scan_leb *seb,$/;"	f	file:
+compat	scan.h	/^	int compat;$/;"	m	struct:ubi_scan_volume
+compat	ubi-media.h	/^	__u8    compat;$/;"	m	struct:ubi_vid_hdr
+copy_flag	ubi-media.h	/^	__u8    copy_flag;$/;"	m	struct:ubi_vid_hdr
+corr	scan.h	/^	struct list_head corr;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::list_head
+corrupted	ubi.h	/^	unsigned int corrupted:1;$/;"	m	struct:ubi_volume
+crc	ubi-media.h	/^	__be32  crc;$/;"	m	struct:ubi_vtbl_record
+create_empty_lvol	vtbl.c	/^static struct ubi_vtbl_record *create_empty_lvol(struct ubi_device *ubi,$/;"	f	file:
+create_vtbl	vtbl.c	/^static int create_vtbl(struct ubi_device *ubi, struct ubi_scan_info *si,$/;"	f	file:
+ctrl_cdev_compat_ioctl	cdev.c	/^static long ctrl_cdev_compat_ioctl(struct file *file, unsigned int cmd,$/;"	f	file:
+ctrl_cdev_compat_ioctl	cdev.c	1075;"	d	file:
+ctrl_cdev_ioctl	cdev.c	/^static long ctrl_cdev_ioctl(struct file *file, unsigned int cmd,$/;"	f	file:
+data_crc	ubi-media.h	/^	__be32  data_crc;$/;"	m	struct:ubi_vid_hdr
+data_offset	ubi-media.h	/^	__be32  data_offset;$/;"	m	struct:ubi_ec_hdr
+data_pad	fastscan.h	/^	__be32		data_pad;$/;"	m	struct:fastscan_metadata_vol_info
+data_pad	scan.h	/^	int data_pad;$/;"	m	struct:ubi_scan_volume
+data_pad	ubi-media.h	/^	__be32  data_pad;$/;"	m	struct:ubi_vid_hdr
+data_pad	ubi-media.h	/^	__be32  data_pad;$/;"	m	struct:ubi_vtbl_record
+data_pad	ubi.h	/^	int data_pad;$/;"	m	struct:ubi_volume
+data_size	ubi-media.h	/^	__be32  data_size;$/;"	m	struct:ubi_vid_hdr
+dbg_bld	debug.h	155;"	d
+dbg_bld	debug.h	89;"	d
+dbg_bld	debug.h	92;"	d
+dbg_buf_mutex	ubi.h	/^	struct mutex dbg_buf_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+dbg_eba	debug.h	152;"	d
+dbg_eba	debug.h	68;"	d
+dbg_eba	debug.h	70;"	d
+dbg_err	debug.h	149;"	d
+dbg_err	debug.h	27;"	d
+dbg_gen	debug.h	151;"	d
+dbg_gen	debug.h	61;"	d
+dbg_gen	debug.h	63;"	d
+dbg_io	debug.h	154;"	d
+dbg_io	debug.h	82;"	d
+dbg_io	debug.h	84;"	d
+dbg_msg	debug.h	150;"	d
+dbg_msg	debug.h	37;"	d
+dbg_peb_buf	ubi.h	/^	void *dbg_peb_buf;$/;"	m	struct:ubi_device
+dbg_wl	debug.h	153;"	d
+dbg_wl	debug.h	75;"	d
+dbg_wl	debug.h	77;"	d
+desc	ubi.h	/^	struct ubi_volume_desc *desc;$/;"	m	struct:ubi_rename_entry	typeref:struct:ubi_rename_entry::ubi_volume_desc
+destroy_sv	scan.c	/^static void destroy_sv(struct ubi_scan_volume *sv)$/;"	f	file:
+dev	ubi.h	/^	struct device dev;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::device
+dev	ubi.h	/^	struct device dev;$/;"	m	struct:ubi_volume	typeref:struct:ubi_volume::device
+dev_attribute_show	build.c	/^static ssize_t dev_attribute_show(struct device *dev,$/;"	f	file:
+dev_avail_eraseblocks	build.c	/^static struct device_attribute dev_avail_eraseblocks =$/;"	v	typeref:struct:device_attribute	file:
+dev_bad_peb_count	build.c	/^static struct device_attribute dev_bad_peb_count =$/;"	v	typeref:struct:device_attribute	file:
+dev_bgt_enabled	build.c	/^static struct device_attribute dev_bgt_enabled =$/;"	v	typeref:struct:device_attribute	file:
+dev_eraseblock_size	build.c	/^static struct device_attribute dev_eraseblock_size =$/;"	v	typeref:struct:device_attribute	file:
+dev_max_ec	build.c	/^static struct device_attribute dev_max_ec =$/;"	v	typeref:struct:device_attribute	file:
+dev_max_vol_count	build.c	/^static struct device_attribute dev_max_vol_count =$/;"	v	typeref:struct:device_attribute	file:
+dev_min_io_size	build.c	/^static struct device_attribute dev_min_io_size =$/;"	v	typeref:struct:device_attribute	file:
+dev_mtd_num	build.c	/^static struct device_attribute dev_mtd_num =$/;"	v	typeref:struct:device_attribute	file:
+dev_release	build.c	/^static void dev_release(struct device *dev)$/;"	f	file:
+dev_reserved_for_bad	build.c	/^static struct device_attribute dev_reserved_for_bad =$/;"	v	typeref:struct:device_attribute	file:
+dev_total_eraseblocks	build.c	/^static struct device_attribute dev_total_eraseblocks =$/;"	v	typeref:struct:device_attribute	file:
+dev_volumes_count	build.c	/^static struct device_attribute dev_volumes_count =$/;"	v	typeref:struct:device_attribute	file:
+direct_writes	ubi.h	/^	unsigned int direct_writes:1;$/;"	m	struct:ubi_volume
+do_sync_erase	io.c	/^static int do_sync_erase(struct ubi_device *ubi, int pnum)$/;"	f	file:
+do_work	wl.c	/^static int do_work(struct ubi_device *ubi)$/;"	f	file:
+e	wl.c	/^	struct ubi_wl_entry *e;$/;"	m	struct:ubi_work	typeref:struct:ubi_work::ubi_wl_entry	file:
+eba_tbl	ubi.h	/^	int *eba_tbl;$/;"	m	struct:ubi_volume
+ec	fastscan.h	/^	__be32		ec;$/;"	m	struct:fastscan_metadata_wl
+ec	scan.h	/^	int ec;$/;"	m	struct:ubi_scan_leb
+ec	ubi-media.h	/^	__be64  ec; \/* Warning: the current limit is 31-bit anyway! *\/$/;"	m	struct:ubi_ec_hdr
+ec	ubi.h	/^	int ec;$/;"	m	struct:ubi_wl_entry
+ec_count	scan.h	/^	int ec_count;$/;"	m	struct:ubi_scan_info
+ec_hdr_alsize	ubi.h	/^	int ec_hdr_alsize;$/;"	m	struct:ubi_device
+ec_sum	scan.h	/^	uint64_t ec_sum;$/;"	m	struct:ubi_scan_info
+ech	scan.c	/^static struct ubi_ec_hdr *ech;$/;"	v	typeref:struct:ubi_ec_hdr	file:
+empty_vtbl_record	vtbl.c	/^static struct ubi_vtbl_record empty_vtbl_record;$/;"	v	typeref:struct:ubi_vtbl_record	file:
+ensure_wear_leveling	wl.c	/^static int ensure_wear_leveling(struct ubi_device *ubi)$/;"	f	file:
+erase	scan.h	/^	struct list_head erase;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::list_head
+erase_callback	io.c	/^static void erase_callback(struct erase_info *ei)$/;"	f	file:
+erase_peb_count	fastscan.h	/^	__be32		erase_peb_count;$/;"	m	struct:fastscan_metadata_hdr
+erase_worker	wl.c	/^static int erase_worker(struct ubi_device *ubi, struct ubi_work *wl_wrk,$/;"	f	file:
+exclusive	ubi.h	/^	int exclusive;$/;"	m	struct:ubi_volume
+fastscan	fastscan.c	/^int fastscan(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
+fastscan_alloc_pebs	update.c	/^struct ubi_wl_entry* fastscan_alloc_pebs(struct ubi_device *ubi)$/;"	f
+fastscan_calc_fs_size	fastscan.c	/^size_t fastscan_calc_fs_size(struct ubi_device *ubi)$/;"	f
+fastscan_create_scan_info	fastscan.c	/^int fastscan_create_scan_info(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
+fastscan_metadata_eba	fastscan.h	/^struct fastscan_metadata_eba{$/;"	s
+fastscan_metadata_hdr	fastscan.h	/^struct fastscan_metadata_hdr{$/;"	s
+fastscan_metadata_vol_info	fastscan.h	/^struct fastscan_metadata_vol_info{$/;"	s
+fastscan_metadata_wl	fastscan.h	/^struct fastscan_metadata_wl{$/;"	s
+fastscan_read	fastscan.c	/^int fastscan_read(struct ubi_device *ubi, void *buf, int pnum, $/;"	f
+fastscan_read_vid_hdr	fastscan.c	/^int fastscan_read_vid_hdr(struct ubi_device *ubi, int pnum, $/;"	f
+fastscan_scan_peb	fastscan.c	/^int fastscan_scan_peb(struct ubi_device *ubi, int pnum, int *vid)$/;"	f
+fastscan_update_metadata	update.c	/^int fastscan_update_metadata(struct ubi_device *ubi)$/;"	f
+fastscan_write_metadata	update.c	/^int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)$/;"	f
+find_wl_entry	wl.c	/^static struct ubi_wl_entry *find_wl_entry(struct rb_root *root, int max)$/;"	f	file:
+flags	ubi-media.h	/^	__u8    flags;$/;"	m	struct:ubi_vtbl_record
+flash_size	ubi.h	/^	long long flash_size;$/;"	m	struct:ubi_device
+free	scan.h	/^	struct list_head free;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::list_head
+free	ubi.h	/^	struct rb_root free;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::rb_root
+free_internal_volumes	build.c	/^static void free_internal_volumes(struct ubi_device *ubi)$/;"	f	file:
+free_peb_count	fastscan.h	/^	__be32		free_peb_count;$/;"	m	struct:fastscan_metadata_hdr
+free_user_volumes	build.c	/^static void free_user_volumes(struct ubi_device *ubi)$/;"	f	file:
+fs_buf	ubi.h	/^	void *fs_buf;$/;"	m	struct:ubi_device
+fs_size	ubi.h	/^	size_t *fs_size;$/;"	m	struct:ubi_device
+func	wl.c	/^	int (*func)(struct ubi_device *ubi, struct ubi_work *wrk, int cancel);$/;"	m	struct:ubi_work	file:
+get_exclusive	cdev.c	/^static int get_exclusive(struct ubi_volume_desc *desc)$/;"	f	file:
+global_sqnum	ubi.h	/^	unsigned long long global_sqnum;$/;"	m	struct:ubi_device
+gluebi_desc	ubi.h	/^	struct ubi_volume_desc *gluebi_desc;$/;"	m	struct:ubi_volume	typeref:struct:ubi_volume::ubi_volume_desc
+gluebi_erase	gluebi.c	/^static int gluebi_erase(struct mtd_info *mtd, struct erase_info *instr)$/;"	f	file:
+gluebi_get_device	gluebi.c	/^static int gluebi_get_device(struct mtd_info *mtd)$/;"	f	file:
+gluebi_mtd	ubi.h	/^	struct mtd_info gluebi_mtd;$/;"	m	struct:ubi_volume	typeref:struct:ubi_volume::mtd_info
+gluebi_put_device	gluebi.c	/^static void gluebi_put_device(struct mtd_info *mtd)$/;"	f	file:
+gluebi_read	gluebi.c	/^static int gluebi_read(struct mtd_info *mtd, loff_t from, size_t len,$/;"	f	file:
+gluebi_refcount	ubi.h	/^	int gluebi_refcount;$/;"	m	struct:ubi_volume
+gluebi_write	gluebi.c	/^static int gluebi_write(struct mtd_info *mtd, loff_t to, size_t len,$/;"	f	file:
+good_peb_count	ubi.h	/^	int good_peb_count;$/;"	m	struct:ubi_device
+hdr_crc	ubi-media.h	/^	__be32  hdr_crc;$/;"	m	struct:ubi_ec_hdr
+hdr_crc	ubi-media.h	/^	__be32  hdr_crc;$/;"	m	struct:ubi_vid_hdr
+hdrs_min_io_size	ubi.h	/^	int hdrs_min_io_size;$/;"	m	struct:ubi_device
+highest_lnum	scan.h	/^	int highest_lnum;$/;"	m	struct:ubi_scan_volume
+highest_vol_id	scan.h	/^	int highest_vol_id;$/;"	m	struct:ubi_scan_info
+idx2vol_id	ubi.h	/^static inline int idx2vol_id(const struct ubi_device *ubi, int idx)$/;"	f
+in_wl_tree	wl.c	/^static int in_wl_tree(struct ubi_wl_entry *e, struct rb_root *root)$/;"	f	file:
+init_volumes	vtbl.c	/^static int init_volumes(struct ubi_device *ubi, const struct ubi_scan_info *si,$/;"	f	file:
+io_init	build.c	/^static int io_init(struct ubi_device *ubi)$/;"	f	file:
+is_empty	scan.h	/^	int is_empty;$/;"	m	struct:ubi_scan_info
+kill_volumes	build.c	/^static void kill_volumes(struct ubi_device *ubi)$/;"	f	file:
+last_data_size	scan.h	/^	int last_data_size;$/;"	m	struct:ubi_scan_volume
+last_eb_bytes	fastscan.h	/^	__be32		last_eb_bytes;$/;"	m	struct:fastscan_metadata_vol_info
+last_eb_bytes	ubi.h	/^	int last_eb_bytes;$/;"	m	struct:ubi_volume
+leb_count	scan.h	/^	int leb_count;$/;"	m	struct:ubi_scan_volume
+leb_read_lock	eba.c	/^static int leb_read_lock(struct ubi_device *ubi, int vol_id, int lnum)$/;"	f	file:
+leb_read_unlock	eba.c	/^static void leb_read_unlock(struct ubi_device *ubi, int vol_id, int lnum)$/;"	f	file:
+leb_size	ubi.h	/^	int leb_size;$/;"	m	struct:ubi_device
+leb_start	ubi.h	/^	int leb_start;$/;"	m	struct:ubi_device
+leb_write_lock	eba.c	/^static int leb_write_lock(struct ubi_device *ubi, int vol_id, int lnum)$/;"	f	file:
+leb_write_trylock	eba.c	/^static int leb_write_trylock(struct ubi_device *ubi, int vol_id, int lnum)$/;"	f	file:
+leb_write_unlock	eba.c	/^static void leb_write_unlock(struct ubi_device *ubi, int vol_id, int lnum)$/;"	f	file:
+list	scan.h	/^		struct list_head list;$/;"	m	union:ubi_scan_leb::__anon6	typeref:struct:ubi_scan_leb::__anon6::list_head
+list	ubi.h	/^		struct list_head list;$/;"	m	union:ubi_wl_entry::__anon2	typeref:struct:ubi_wl_entry::__anon2::list_head
+list	ubi.h	/^	struct list_head list;$/;"	m	struct:ubi_rename_entry	typeref:struct:ubi_rename_entry::list_head
+list	wl.c	/^	struct list_head list;$/;"	m	struct:ubi_work	typeref:struct:ubi_work::list_head	file:
+lnum	scan.h	/^	int lnum;$/;"	m	struct:ubi_scan_leb
+lnum	ubi-media.h	/^	__be32  lnum;$/;"	m	struct:ubi_vid_hdr
+lnum	ubi.h	/^	int lnum;$/;"	m	struct:ubi_ltree_entry
+lookuptbl	ubi.h	/^	struct ubi_wl_entry **lookuptbl;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::ubi_wl_entry
+ltree	ubi.h	/^	struct rb_root ltree;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::rb_root
+ltree_add_entry	eba.c	/^static struct ubi_ltree_entry *ltree_add_entry(struct ubi_device *ubi,$/;"	f	file:
+ltree_lock	ubi.h	/^	spinlock_t ltree_lock;$/;"	m	struct:ubi_device
+ltree_lookup	eba.c	/^static struct ubi_ltree_entry *ltree_lookup(struct ubi_device *ubi, int vol_id,$/;"	f	file:
+magic	fastscan.h	/^	__be32		magic;$/;"	m	struct:fastscan_metadata_eba
+magic	fastscan.h	/^	__be32		magic;$/;"	m	struct:fastscan_metadata_hdr
+magic	fastscan.h	/^	__be32		magic;$/;"	m	struct:fastscan_metadata_vol_info
+magic	ubi-media.h	/^	__be32  magic;$/;"	m	struct:ubi_ec_hdr
+magic	ubi-media.h	/^	__be32  magic;$/;"	m	struct:ubi_vid_hdr
+max_ec	scan.h	/^	int max_ec;$/;"	m	struct:ubi_scan_info
+max_ec	ubi.h	/^	int max_ec;$/;"	m	struct:ubi_device
+max_sqnum	scan.h	/^	unsigned long long max_sqnum;$/;"	m	struct:ubi_scan_info
+mean_ec	scan.h	/^	int mean_ec;$/;"	m	struct:ubi_scan_info
+mean_ec	ubi.h	/^	int mean_ec;$/;"	m	struct:ubi_device
+min_ec	scan.h	/^	int min_ec;$/;"	m	struct:ubi_scan_info
+min_io_size	ubi.h	/^	int min_io_size;$/;"	m	struct:ubi_device
+mode	ubi.h	/^	int mode;$/;"	m	struct:ubi_volume_desc
+move_from	ubi.h	/^	struct ubi_wl_entry *move_from;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::ubi_wl_entry
+move_mutex	ubi.h	/^	struct mutex move_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+move_to	ubi.h	/^	struct ubi_wl_entry *move_to;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::ubi_wl_entry
+move_to_put	ubi.h	/^	int move_to_put;$/;"	m	struct:ubi_device
+mtd	ubi.h	/^	struct mtd_info *mtd;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mtd_info
+mtd_dev_param	build.c	/^static struct mtd_dev_param mtd_dev_param[UBI_MAX_DEVICES];$/;"	v	typeref:struct:mtd_dev_param	file:
+mtd_dev_param	build.c	/^struct mtd_dev_param {$/;"	s	file:
+mtd_devs	build.c	/^static int mtd_devs;$/;"	v	file:
+mult_mutex	ubi.h	/^	struct mutex mult_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+mutex	ubi.h	/^	struct rw_semaphore mutex;$/;"	m	struct:ubi_ltree_entry	typeref:struct:ubi_ltree_entry::rw_semaphore
+name	build.c	/^	char name[MTD_PARAM_LEN_MAX];$/;"	m	struct:mtd_dev_param	file:
+name	ubi-media.h	/^	__u8    name[UBI_VOL_NAME_MAX+1];$/;"	m	struct:ubi_vtbl_record
+name	ubi.h	/^	char name[UBI_VOL_NAME_MAX + 1];$/;"	m	struct:ubi_volume
+name_len	ubi-media.h	/^	__be16  name_len;$/;"	m	struct:ubi_vtbl_record
+name_len	ubi.h	/^	int name_len;$/;"	m	struct:ubi_volume
+new_fs_hdr	update.c	/^static struct ubi_vid_hdr *new_fs_hdr(struct ubi_device *ubi, int vol_id)$/;"	f	file:
+new_name	ubi.h	/^	char new_name[UBI_VOL_NAME_MAX + 1];$/;"	m	struct:ubi_rename_entry
+new_name_len	ubi.h	/^	int new_name_len;$/;"	m	struct:ubi_rename_entry
+next_sqnum	eba.c	/^static unsigned long long next_sqnum(struct ubi_device *ubi)$/;"	f	file:
+open_mtd_device	build.c	/^static struct mtd_info * __init open_mtd_device(const char *mtd_dev)$/;"	f	file:
+padding	fastscan.h	/^	__u8		padding[3];$/;"	m	struct:fastscan_metadata_vol_info
+padding	ubi-media.h	/^	__u8    padding[23];$/;"	m	struct:ubi_vtbl_record
+padding1	ubi-media.h	/^	__u8    padding1[3];$/;"	m	struct:ubi_ec_hdr
+padding1	ubi-media.h	/^	__u8    padding1[4];$/;"	m	struct:ubi_vid_hdr
+padding2	ubi-media.h	/^	__u8    padding2[36];$/;"	m	struct:ubi_ec_hdr
+padding2	ubi-media.h	/^	__u8    padding2[4];$/;"	m	struct:ubi_vid_hdr
+padding3	ubi-media.h	/^	__u8    padding3[12];$/;"	m	struct:ubi_vid_hdr
+paranoid_check_all_ff	io.c	/^static int paranoid_check_all_ff(struct ubi_device *ubi, int pnum, int offset,$/;"	f	file:
+paranoid_check_all_ff	io.c	109;"	d	file:
+paranoid_check_ec	wl.c	/^static int paranoid_check_ec(struct ubi_device *ubi, int pnum, int ec)$/;"	f	file:
+paranoid_check_ec	wl.c	168;"	d	file:
+paranoid_check_ec_hdr	io.c	/^static int paranoid_check_ec_hdr(const struct ubi_device *ubi, int pnum,$/;"	f	file:
+paranoid_check_ec_hdr	io.c	106;"	d	file:
+paranoid_check_in_pq	wl.c	/^static int paranoid_check_in_pq(struct ubi_device *ubi, struct ubi_wl_entry *e)$/;"	f	file:
+paranoid_check_in_pq	wl.c	170;"	d	file:
+paranoid_check_in_wl_tree	wl.c	/^static int paranoid_check_in_wl_tree(struct ubi_wl_entry *e,$/;"	f	file:
+paranoid_check_in_wl_tree	wl.c	169;"	d	file:
+paranoid_check_not_bad	io.c	/^static int paranoid_check_not_bad(const struct ubi_device *ubi, int pnum)$/;"	f	file:
+paranoid_check_not_bad	io.c	104;"	d	file:
+paranoid_check_peb_ec_hdr	io.c	/^static int paranoid_check_peb_ec_hdr(const struct ubi_device *ubi, int pnum)$/;"	f	file:
+paranoid_check_peb_ec_hdr	io.c	105;"	d	file:
+paranoid_check_peb_vid_hdr	io.c	/^static int paranoid_check_peb_vid_hdr(const struct ubi_device *ubi, int pnum)$/;"	f	file:
+paranoid_check_peb_vid_hdr	io.c	107;"	d	file:
+paranoid_check_si	scan.c	/^static int paranoid_check_si(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f	file:
+paranoid_check_si	scan.c	51;"	d	file:
+paranoid_check_vid_hdr	io.c	/^static int paranoid_check_vid_hdr(const struct ubi_device *ubi, int pnum,$/;"	f	file:
+paranoid_check_vid_hdr	io.c	108;"	d	file:
+paranoid_check_volume	vmt.c	/^static int paranoid_check_volume(struct ubi_device *ubi, int vol_id)$/;"	f	file:
+paranoid_check_volumes	vmt.c	/^static int paranoid_check_volumes(struct ubi_device *ubi)$/;"	f	file:
+paranoid_check_volumes	vmt.c	33;"	d	file:
+paranoid_vtbl_check	vtbl.c	/^static void paranoid_vtbl_check(const struct ubi_device *ubi)$/;"	f	file:
+paranoid_vtbl_check	vtbl.c	67;"	d	file:
+patterns	io.c	/^static uint8_t patterns[] = {0xa5, 0x5a, 0x0};$/;"	v	file:
+peb_buf1	ubi.h	/^	void *peb_buf1;$/;"	m	struct:ubi_device
+peb_buf2	ubi.h	/^	void *peb_buf2;$/;"	m	struct:ubi_device
+peb_count	ubi.h	/^	int peb_count;$/;"	m	struct:ubi_device
+peb_num	fastscan.h	/^	__be32		peb_num;$/;"	m	struct:fastscan_metadata_eba
+peb_size	ubi.h	/^	int peb_size;$/;"	m	struct:ubi_device
+pnum	fastscan.h	/^	__be32		pnum;$/;"	m	struct:fastscan_metadata_wl
+pnum	fastscan.h	/^	__be32		pnum[0];$/;"	m	struct:fastscan_metadata_eba
+pnum	scan.h	/^	int pnum;$/;"	m	struct:ubi_scan_leb
+pnum	ubi.h	/^	int pnum;$/;"	m	struct:ubi_wl_entry
+pq	ubi.h	/^	struct list_head pq[UBI_PROT_QUEUE_LEN];$/;"	m	struct:ubi_device	typeref:struct:ubi_device::list_head
+pq_head	ubi.h	/^	int pq_head;$/;"	m	struct:ubi_device
+process_eb	scan.c	/^static int process_eb(struct ubi_device *ubi, struct ubi_scan_info *si,$/;"	f	file:
+process_lvol	vtbl.c	/^static struct ubi_vtbl_record *process_lvol(struct ubi_device *ubi,$/;"	f	file:
+produce_free_peb	wl.c	/^static int produce_free_peb(struct ubi_device *ubi)$/;"	f	file:
+prot_queue_add	wl.c	/^static void prot_queue_add(struct ubi_device *ubi, struct ubi_wl_entry *e)$/;"	f	file:
+prot_queue_del	wl.c	/^static int prot_queue_del(struct ubi_device *ubi, int pnum)$/;"	f	file:
+protection_queue_destroy	wl.c	/^static void protection_queue_destroy(struct ubi_device *ubi)$/;"	f	file:
+rb	scan.h	/^		struct rb_node rb;$/;"	m	union:ubi_scan_leb::__anon6	typeref:struct:ubi_scan_leb::__anon6::rb_node
+rb	scan.h	/^	struct rb_node rb;$/;"	m	struct:ubi_scan_volume	typeref:struct:ubi_scan_volume::rb_node
+rb	ubi.h	/^		struct rb_node rb;$/;"	m	union:ubi_wl_entry::__anon2	typeref:struct:ubi_wl_entry::__anon2::rb_node
+rb	ubi.h	/^	struct rb_node rb;$/;"	m	struct:ubi_ltree_entry	typeref:struct:ubi_ltree_entry::rb_node
+readers	ubi.h	/^	int readers;$/;"	m	struct:ubi_volume
+recover_peb	eba.c	/^static int recover_peb(struct ubi_device *ubi, int pnum, int vol_id, int lnum,$/;"	f	file:
+ref_count	ubi.h	/^	int ref_count;$/;"	m	struct:ubi_device
+ref_count	ubi.h	/^	int ref_count;$/;"	m	struct:ubi_volume
+remove	ubi.h	/^	int remove;$/;"	m	struct:ubi_rename_entry
+rename_volumes	cdev.c	/^static int rename_volumes(struct ubi_device *ubi,$/;"	f	file:
+reserved_pebs	ubi-media.h	/^	__be32  reserved_pebs;$/;"	m	struct:ubi_vtbl_record
+reserved_pebs	ubi.h	/^	int reserved_pebs;$/;"	m	struct:ubi_volume
+revoke_exclusive	cdev.c	/^static void revoke_exclusive(struct ubi_volume_desc *desc, int mode)$/;"	f	file:
+ro_mode	ubi.h	/^	int ro_mode;$/;"	m	struct:ubi_device
+root	scan.h	/^	struct rb_root root;$/;"	m	struct:ubi_scan_volume	typeref:struct:ubi_scan_volume::rb_root
+rsvd_pebs	ubi.h	/^	int rsvd_pebs;$/;"	m	struct:ubi_device
+schedule_erase	wl.c	/^static int schedule_erase(struct ubi_device *ubi, struct ubi_wl_entry *e,$/;"	f	file:
+schedule_ubi_work	wl.c	/^static void schedule_ubi_work(struct ubi_device *ubi, struct ubi_work *wrk)$/;"	f	file:
+scrub	scan.h	/^	int scrub;$/;"	m	struct:ubi_scan_leb
+scrub	ubi.h	/^	struct rb_root scrub;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::rb_root
+scrub_peb_count	fastscan.h	/^	__be32		scrub_peb_count;$/;"	m	struct:fastscan_metadata_hdr
+serve_prot_queue	wl.c	/^static void serve_prot_queue(struct ubi_device *ubi)$/;"	f	file:
+set_update_marker	upd.c	/^static int set_update_marker(struct ubi_device *ubi, struct ubi_volume *vol)$/;"	f	file:
+sqnum	scan.h	/^	unsigned long long sqnum;$/;"	m	struct:ubi_scan_leb
+sqnum	ubi-media.h	/^	__be64  sqnum;$/;"	m	struct:ubi_vid_hdr
+sync_erase	wl.c	/^static int sync_erase(struct ubi_device *ubi, struct ubi_wl_entry *e,$/;"	f	file:
+thread_enabled	ubi.h	/^	int thread_enabled;$/;"	m	struct:ubi_device
+torture	wl.c	/^	int torture;$/;"	m	struct:ubi_work	file:
+torture_peb	io.c	/^static int torture_peb(struct ubi_device *ubi, int pnum)$/;"	f	file:
+tree_destroy	wl.c	/^static void tree_destroy(struct rb_root *root)$/;"	f	file:
+u	scan.h	/^	} u;$/;"	m	struct:ubi_scan_leb	typeref:union:ubi_scan_leb::__anon6
+u	ubi.h	/^	} u;$/;"	m	struct:ubi_wl_entry	typeref:union:ubi_wl_entry::__anon2
+ubi	ubi.h	/^	struct ubi_device *ubi;$/;"	m	struct:ubi_volume	typeref:struct:ubi_volume::ubi_device
+ubi_add_volume	vmt.c	/^int ubi_add_volume(struct ubi_device *ubi, struct ubi_volume *vol)$/;"	f
+ubi_assert	debug.h	148;"	d
+ubi_assert	debug.h	29;"	d
+ubi_attach_mtd_dev	build.c	/^int ubi_attach_mtd_dev(struct mtd_info *mtd, int ubi_num, int vid_hdr_offset)$/;"	f
+ubi_calc_data_len	misc.c	/^int ubi_calc_data_len(const struct ubi_device *ubi, const void *buf,$/;"	f
+ubi_calculate_reserved	misc.c	/^void ubi_calculate_reserved(struct ubi_device *ubi)$/;"	f
+ubi_cdev_compat_ioctl	cdev.c	/^static long ubi_cdev_compat_ioctl(struct file *file, unsigned int cmd,$/;"	f	file:
+ubi_cdev_compat_ioctl	cdev.c	1074;"	d	file:
+ubi_cdev_ioctl	cdev.c	/^static long ubi_cdev_ioctl(struct file *file, unsigned int cmd,$/;"	f	file:
+ubi_cdev_operations	cdev.c	/^const struct file_operations ubi_cdev_operations = {$/;"	v	typeref:struct:file_operations
+ubi_change_vtbl_record	vtbl.c	/^int ubi_change_vtbl_record(struct ubi_device *ubi, int idx,$/;"	f
+ubi_check_volume	misc.c	/^int ubi_check_volume(struct ubi_device *ubi, int vol_id)$/;"	f
+ubi_class	build.c	/^struct class *ubi_class;$/;"	v	typeref:struct:class
+ubi_close_volume	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_close_volume);$/;"	v
+ubi_close_volume	kapi.c	/^void ubi_close_volume(struct ubi_volume_desc *desc)$/;"	f
+ubi_create_gluebi	gluebi.c	/^int ubi_create_gluebi(struct ubi_device *ubi, struct ubi_volume *vol)$/;"	f
+ubi_create_gluebi	ubi.h	503;"	d
+ubi_create_volume	vmt.c	/^int ubi_create_volume(struct ubi_device *ubi, struct ubi_mkvol_req *req)$/;"	f
+ubi_ctrl_cdev	build.c	/^static struct miscdevice ubi_ctrl_cdev = {$/;"	v	typeref:struct:miscdevice	file:
+ubi_ctrl_cdev_operations	cdev.c	/^const struct file_operations ubi_ctrl_cdev_operations = {$/;"	v	typeref:struct:file_operations
+ubi_dbg_dump_ec_hdr	debug.c	/^void ubi_dbg_dump_ec_hdr(const struct ubi_ec_hdr *ec_hdr)$/;"	f
+ubi_dbg_dump_ec_hdr	debug.h	157;"	d
+ubi_dbg_dump_mkvol_req	debug.c	/^void ubi_dbg_dump_mkvol_req(const struct ubi_mkvol_req *req)$/;"	f
+ubi_dbg_dump_mkvol_req	debug.h	163;"	d
+ubi_dbg_dump_seb	debug.c	/^void ubi_dbg_dump_seb(const struct ubi_scan_leb *seb, int type)$/;"	f
+ubi_dbg_dump_seb	debug.h	162;"	d
+ubi_dbg_dump_stack	debug.h	156;"	d
+ubi_dbg_dump_stack	debug.h	41;"	d
+ubi_dbg_dump_sv	debug.c	/^void ubi_dbg_dump_sv(const struct ubi_scan_volume *sv)$/;"	f
+ubi_dbg_dump_sv	debug.h	161;"	d
+ubi_dbg_dump_vid_hdr	debug.c	/^void ubi_dbg_dump_vid_hdr(const struct ubi_vid_hdr *vid_hdr)$/;"	f
+ubi_dbg_dump_vid_hdr	debug.h	158;"	d
+ubi_dbg_dump_vol_info	debug.c	/^void ubi_dbg_dump_vol_info(const struct ubi_volume *vol)$/;"	f
+ubi_dbg_dump_vol_info	debug.h	159;"	d
+ubi_dbg_dump_vtbl_record	debug.c	/^void ubi_dbg_dump_vtbl_record(const struct ubi_vtbl_record *r, int idx)$/;"	f
+ubi_dbg_dump_vtbl_record	debug.h	160;"	d
+ubi_dbg_is_bitflip	debug.h	/^static inline int ubi_dbg_is_bitflip(void)$/;"	f
+ubi_dbg_is_bitflip	debug.h	113;"	d
+ubi_dbg_is_bitflip	debug.h	167;"	d
+ubi_dbg_is_erase_failure	debug.h	/^static inline int ubi_dbg_is_erase_failure(void)$/;"	f
+ubi_dbg_is_erase_failure	debug.h	143;"	d
+ubi_dbg_is_erase_failure	debug.h	169;"	d
+ubi_dbg_is_write_failure	debug.h	/^static inline int ubi_dbg_is_write_failure(void)$/;"	f
+ubi_dbg_is_write_failure	debug.h	128;"	d
+ubi_dbg_is_write_failure	debug.h	168;"	d
+ubi_destroy_gluebi	gluebi.c	/^int ubi_destroy_gluebi(struct ubi_volume *vol)$/;"	f
+ubi_destroy_gluebi	ubi.h	504;"	d
+ubi_detach_mtd_dev	build.c	/^int ubi_detach_mtd_dev(int ubi_num, int anyway)$/;"	f
+ubi_device	ubi.h	/^struct ubi_device {$/;"	s
+ubi_devices	build.c	/^static struct ubi_device *ubi_devices[UBI_MAX_DEVICES];$/;"	v	typeref:struct:ubi_device	file:
+ubi_devices_mutex	build.c	/^DEFINE_MUTEX(ubi_devices_mutex);$/;"	v
+ubi_eba_atomic_leb_change	eba.c	/^int ubi_eba_atomic_leb_change(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_eba_copy_leb	eba.c	/^int ubi_eba_copy_leb(struct ubi_device *ubi, int from, int to,$/;"	f
+ubi_eba_init_scan	eba.c	/^int ubi_eba_init_scan(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
+ubi_eba_read_leb	eba.c	/^int ubi_eba_read_leb(struct ubi_device *ubi, struct ubi_volume *vol, int lnum,$/;"	f
+ubi_eba_unmap_leb	eba.c	/^int ubi_eba_unmap_leb(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_eba_write_leb	eba.c	/^int ubi_eba_write_leb(struct ubi_device *ubi, struct ubi_volume *vol, int lnum,$/;"	f
+ubi_eba_write_leb_st	eba.c	/^int ubi_eba_write_leb_st(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_ec_hdr	ubi-media.h	/^struct ubi_ec_hdr {$/;"	s
+ubi_err	ubi.h	58;"	d
+ubi_exit	build.c	/^module_exit(ubi_exit);$/;"	v
+ubi_exit	build.c	/^static void __exit ubi_exit(void)$/;"	f	file:
+ubi_free_vid_hdr	ubi.h	/^static inline void ubi_free_vid_hdr(const struct ubi_device *ubi,$/;"	f
+ubi_free_volume	vmt.c	/^void ubi_free_volume(struct ubi_device *ubi, struct ubi_volume *vol)$/;"	f
+ubi_get_by_major	build.c	/^struct ubi_device *ubi_get_by_major(int major)$/;"	f
+ubi_get_compat	eba.c	/^static int ubi_get_compat(const struct ubi_device *ubi, int vol_id)$/;"	f	file:
+ubi_get_device	build.c	/^struct ubi_device *ubi_get_device(int ubi_num)$/;"	f
+ubi_get_device_info	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_get_device_info);$/;"	v
+ubi_get_device_info	kapi.c	/^int ubi_get_device_info(int ubi_num, struct ubi_device_info *di)$/;"	f
+ubi_get_volume_info	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_get_volume_info);$/;"	v
+ubi_get_volume_info	kapi.c	/^void ubi_get_volume_info(struct ubi_volume_desc *desc,$/;"	f
+ubi_gluebi_updated	gluebi.c	/^void ubi_gluebi_updated(struct ubi_volume *vol)$/;"	f
+ubi_gluebi_updated	ubi.h	505;"	d
+ubi_init	build.c	/^module_init(ubi_init);$/;"	v
+ubi_init	build.c	/^static int __init ubi_init(void)$/;"	f	file:
+ubi_io_is_bad	io.c	/^int ubi_io_is_bad(const struct ubi_device *ubi, int pnum)$/;"	f
+ubi_io_mark_bad	io.c	/^int ubi_io_mark_bad(const struct ubi_device *ubi, int pnum)$/;"	f
+ubi_io_read	io.c	/^int ubi_io_read(const struct ubi_device *ubi, void *buf, int pnum, int offset,$/;"	f
+ubi_io_read_data	ubi.h	/^static inline int ubi_io_read_data(const struct ubi_device *ubi, void *buf,$/;"	f
+ubi_io_read_ec_hdr	io.c	/^int ubi_io_read_ec_hdr(struct ubi_device *ubi, int pnum,$/;"	f
+ubi_io_read_vid_hdr	io.c	/^int ubi_io_read_vid_hdr(struct ubi_device *ubi, int pnum,$/;"	f
+ubi_io_sync_erase	io.c	/^int ubi_io_sync_erase(struct ubi_device *ubi, int pnum, int torture)$/;"	f
+ubi_io_write	io.c	/^int ubi_io_write(struct ubi_device *ubi, const void *buf, int pnum, int offset,$/;"	f
+ubi_io_write_data	ubi.h	/^static inline int ubi_io_write_data(struct ubi_device *ubi, const void *buf,$/;"	f
+ubi_io_write_ec_hdr	io.c	/^int ubi_io_write_ec_hdr(struct ubi_device *ubi, int pnum,$/;"	f
+ubi_io_write_vid_hdr	io.c	/^int ubi_io_write_vid_hdr(struct ubi_device *ubi, int pnum,$/;"	f
+ubi_is_erase_work	wl.c	/^int ubi_is_erase_work(struct ubi_work *wrk)$/;"	f
+ubi_is_mapped	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_is_mapped);$/;"	v
+ubi_is_mapped	kapi.c	/^int ubi_is_mapped(struct ubi_volume_desc *desc, int lnum)$/;"	f
+ubi_leb_change	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_leb_change);$/;"	v
+ubi_leb_change	kapi.c	/^int ubi_leb_change(struct ubi_volume_desc *desc, int lnum, const void *buf,$/;"	f
+ubi_leb_erase	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_leb_erase);$/;"	v
+ubi_leb_erase	kapi.c	/^int ubi_leb_erase(struct ubi_volume_desc *desc, int lnum)$/;"	f
+ubi_leb_map	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_leb_map);$/;"	v
+ubi_leb_map	kapi.c	/^int ubi_leb_map(struct ubi_volume_desc *desc, int lnum, int dtype)$/;"	f
+ubi_leb_read	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_leb_read);$/;"	v
+ubi_leb_read	kapi.c	/^int ubi_leb_read(struct ubi_volume_desc *desc, int lnum, char *buf, int offset,$/;"	f
+ubi_leb_unmap	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_leb_unmap);$/;"	v
+ubi_leb_unmap	kapi.c	/^int ubi_leb_unmap(struct ubi_volume_desc *desc, int lnum)$/;"	f
+ubi_leb_write	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_leb_write);$/;"	v
+ubi_leb_write	kapi.c	/^int ubi_leb_write(struct ubi_volume_desc *desc, int lnum, const void *buf,$/;"	f
+ubi_ltree_entry	ubi.h	/^struct ubi_ltree_entry {$/;"	s
+ubi_major2num	build.c	/^int ubi_major2num(int major)$/;"	f
+ubi_more_leb_change_data	upd.c	/^int ubi_more_leb_change_data(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_more_update_data	upd.c	/^int ubi_more_update_data(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_msg	ubi.h	53;"	d
+ubi_mtd_param_parse	build.c	/^static int __init ubi_mtd_param_parse(const char *val, struct kernel_param *kp)$/;"	f	file:
+ubi_name	ubi.h	/^	char ubi_name[sizeof(UBI_NAME_STR)+5];$/;"	m	struct:ubi_device
+ubi_num	ubi.h	/^	int ubi_num;$/;"	m	struct:ubi_device
+ubi_open_volume	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_open_volume);$/;"	v
+ubi_open_volume	kapi.c	/^struct ubi_volume_desc *ubi_open_volume(int ubi_num, int vol_id, int mode)$/;"	f
+ubi_open_volume_nm	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_open_volume_nm);$/;"	v
+ubi_open_volume_nm	kapi.c	/^struct ubi_volume_desc *ubi_open_volume_nm(int ubi_num, const char *name,$/;"	f
+ubi_put_device	build.c	/^void ubi_put_device(struct ubi_device *ubi)$/;"	f
+ubi_rb_for_each_entry	ubi.h	565;"	d
+ubi_read_volume_table	vtbl.c	/^int ubi_read_volume_table(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
+ubi_remove_volume	vmt.c	/^int ubi_remove_volume(struct ubi_volume_desc *desc, int no_vtbl)$/;"	f
+ubi_rename_entry	ubi.h	/^struct ubi_rename_entry {$/;"	s
+ubi_rename_volumes	vmt.c	/^int ubi_rename_volumes(struct ubi_device *ubi, struct list_head *rename_list)$/;"	f
+ubi_resize_volume	vmt.c	/^int ubi_resize_volume(struct ubi_volume_desc *desc, int reserved_pebs)$/;"	f
+ubi_ro_mode	ubi.h	/^static inline void ubi_ro_mode(struct ubi_device *ubi)$/;"	f
+ubi_scan	scan.c	/^struct ubi_scan_info *ubi_scan(struct ubi_device *ubi)$/;"	f
+ubi_scan_add_used	scan.c	/^int ubi_scan_add_used(struct ubi_device *ubi, struct ubi_scan_info *si,$/;"	f
+ubi_scan_destroy_si	scan.c	/^void ubi_scan_destroy_si(struct ubi_scan_info *si)$/;"	f
+ubi_scan_erase_peb	scan.c	/^int ubi_scan_erase_peb(struct ubi_device *ubi, const struct ubi_scan_info *si,$/;"	f
+ubi_scan_find_seb	scan.c	/^struct ubi_scan_leb *ubi_scan_find_seb(const struct ubi_scan_volume *sv,$/;"	f
+ubi_scan_find_sv	scan.c	/^struct ubi_scan_volume *ubi_scan_find_sv(const struct ubi_scan_info *si,$/;"	f
+ubi_scan_get_free_peb	scan.c	/^struct ubi_scan_leb *ubi_scan_get_free_peb(struct ubi_device *ubi,$/;"	f
+ubi_scan_info	scan.h	/^struct ubi_scan_info {$/;"	s
+ubi_scan_leb	scan.h	/^struct ubi_scan_leb {$/;"	s
+ubi_scan_move_to_list	scan.h	/^static inline void ubi_scan_move_to_list(struct ubi_scan_volume *sv,$/;"	f
+ubi_scan_rm_volume	scan.c	/^void ubi_scan_rm_volume(struct ubi_scan_info *si, struct ubi_scan_volume *sv)$/;"	f
+ubi_scan_volume	scan.h	/^struct ubi_scan_volume {$/;"	s
+ubi_start_leb_change	upd.c	/^int ubi_start_leb_change(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_start_update	upd.c	/^int ubi_start_update(struct ubi_device *ubi, struct ubi_volume *vol,$/;"	f
+ubi_sync	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_sync);$/;"	v
+ubi_sync	kapi.c	/^int ubi_sync(int ubi_num)$/;"	f
+ubi_sysfs_close	build.c	/^static void ubi_sysfs_close(struct ubi_device *ubi)$/;"	f	file:
+ubi_sysfs_init	build.c	/^static int ubi_sysfs_init(struct ubi_device *ubi)$/;"	f	file:
+ubi_thread	wl.c	/^int ubi_thread(void *u)$/;"	f
+ubi_version	build.c	/^static struct class_attribute ubi_version =$/;"	v	typeref:struct:class_attribute	file:
+ubi_version_show	build.c	/^static ssize_t ubi_version_show(struct class *class, char *buf)$/;"	f	file:
+ubi_vid_hdr	ubi-media.h	/^struct ubi_vid_hdr {$/;"	s
+ubi_vol_cdev_operations	cdev.c	/^const struct file_operations ubi_vol_cdev_operations = {$/;"	v	typeref:struct:file_operations
+ubi_volume	ubi.h	/^struct ubi_volume {$/;"	s
+ubi_volume_desc	ubi.h	/^struct ubi_volume_desc {$/;"	s
+ubi_vtbl_record	ubi-media.h	/^struct ubi_vtbl_record {$/;"	s
+ubi_vtbl_rename_volumes	vtbl.c	/^int ubi_vtbl_rename_volumes(struct ubi_device *ubi,$/;"	f
+ubi_warn	ubi.h	55;"	d
+ubi_wl_close	wl.c	/^void ubi_wl_close(struct ubi_device *ubi)$/;"	f
+ubi_wl_entry	ubi.h	/^struct ubi_wl_entry {$/;"	s
+ubi_wl_entry_slab	build.c	/^struct kmem_cache *ubi_wl_entry_slab;$/;"	v	typeref:struct:kmem_cache
+ubi_wl_flush	wl.c	/^int ubi_wl_flush(struct ubi_device *ubi)$/;"	f
+ubi_wl_get_peb	wl.c	/^int ubi_wl_get_peb(struct ubi_device *ubi, int dtype)$/;"	f
+ubi_wl_init_scan	wl.c	/^int ubi_wl_init_scan(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
+ubi_wl_put_peb	wl.c	/^int ubi_wl_put_peb(struct ubi_device *ubi, int pnum, int torture)$/;"	f
+ubi_wl_scrub_peb	wl.c	/^int ubi_wl_scrub_peb(struct ubi_device *ubi, int pnum)$/;"	f
+ubi_work	wl.c	/^struct ubi_work {$/;"	s	file:
+ubi_zalloc_vid_hdr	ubi.h	/^ubi_zalloc_vid_hdr(const struct ubi_device *ubi, gfp_t gfp_flags)$/;"	f
+uif_close	build.c	/^static void uif_close(struct ubi_device *ubi)$/;"	f	file:
+uif_init	build.c	/^static int uif_init(struct ubi_device *ubi)$/;"	f	file:
+upd_buf	ubi.h	/^	void *upd_buf;$/;"	m	struct:ubi_volume
+upd_bytes	ubi.h	/^	long long upd_bytes;$/;"	m	struct:ubi_volume
+upd_ebs	ubi.h	/^	int upd_ebs;$/;"	m	struct:ubi_volume
+upd_marker	ubi-media.h	/^	__u8    upd_marker;$/;"	m	struct:ubi_vtbl_record
+upd_marker	ubi.h	/^	unsigned int upd_marker:1;$/;"	m	struct:ubi_volume
+upd_received	ubi.h	/^	long long upd_received;$/;"	m	struct:ubi_volume
+updating	ubi.h	/^	unsigned int updating:1;$/;"	m	struct:ubi_volume
+usable_leb_size	ubi.h	/^	int usable_leb_size;$/;"	m	struct:ubi_volume
+used	ubi.h	/^	struct rb_root used;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::rb_root
+used_bytes	ubi.h	/^	long long used_bytes;$/;"	m	struct:ubi_volume
+used_ebs	fastscan.h	/^	__be32		used_ebs;$/;"	m	struct:fastscan_metadata_vol_info
+used_ebs	scan.h	/^	int used_ebs;$/;"	m	struct:ubi_scan_volume
+used_ebs	ubi-media.h	/^	__be32  used_ebs;$/;"	m	struct:ubi_vid_hdr
+used_ebs	ubi.h	/^	int used_ebs;$/;"	m	struct:ubi_volume
+used_peb_count	fastscan.h	/^	__be32		used_peb_count;$/;"	m	struct:fastscan_metadata_hdr
+users	ubi.h	/^	int users;$/;"	m	struct:ubi_ltree_entry
+validate_ec_hdr	io.c	/^static int validate_ec_hdr(const struct ubi_device *ubi,$/;"	f	file:
+validate_vid_hdr	io.c	/^static int validate_vid_hdr(const struct ubi_device *ubi,$/;"	f	file:
+validate_vid_hdr	scan.c	/^static int validate_vid_hdr(const struct ubi_vid_hdr *vid_hdr,$/;"	f	file:
+verify_mkvol_req	cdev.c	/^static int verify_mkvol_req(const struct ubi_device *ubi,$/;"	f	file:
+verify_rsvol_req	cdev.c	/^static int verify_rsvol_req(const struct ubi_device *ubi,$/;"	f	file:
+version	ubi-media.h	/^	__u8    version;$/;"	m	struct:ubi_ec_hdr
+version	ubi-media.h	/^	__u8    version;$/;"	m	struct:ubi_vid_hdr
+vid_hdr_aloffset	ubi.h	/^	int vid_hdr_aloffset;$/;"	m	struct:ubi_device
+vid_hdr_alsize	ubi.h	/^	int vid_hdr_alsize;$/;"	m	struct:ubi_device
+vid_hdr_offs	build.c	/^	int vid_hdr_offs;$/;"	m	struct:mtd_dev_param	file:
+vid_hdr_offset	ubi-media.h	/^	__be32  vid_hdr_offset;$/;"	m	struct:ubi_ec_hdr
+vid_hdr_offset	ubi.h	/^	int vid_hdr_offset;$/;"	m	struct:ubi_device
+vid_hdr_shift	ubi.h	/^	int vid_hdr_shift;$/;"	m	struct:ubi_device
+vidh	scan.c	/^static struct ubi_vid_hdr *vidh;$/;"	v	typeref:struct:ubi_vid_hdr	file:
+vol	ubi.h	/^	struct ubi_volume *vol;$/;"	m	struct:ubi_volume_desc	typeref:struct:ubi_volume_desc::ubi_volume
+vol_attribute_show	vmt.c	/^static ssize_t vol_attribute_show(struct device *dev,$/;"	f	file:
+vol_cdev_compat_ioctl	cdev.c	/^static long vol_cdev_compat_ioctl(struct file *file, unsigned int cmd,$/;"	f	file:
+vol_cdev_compat_ioctl	cdev.c	1073;"	d	file:
+vol_cdev_direct_write	cdev.c	/^static ssize_t vol_cdev_direct_write(struct file *file, const char __user *buf,$/;"	f	file:
+vol_cdev_fsync	cdev.c	/^static int vol_cdev_fsync(struct file *file, struct dentry *dentry,$/;"	f	file:
+vol_cdev_ioctl	cdev.c	/^static long vol_cdev_ioctl(struct file *file, unsigned int cmd,$/;"	f	file:
+vol_cdev_llseek	cdev.c	/^static loff_t vol_cdev_llseek(struct file *file, loff_t offset, int origin)$/;"	f	file:
+vol_cdev_open	cdev.c	/^static int vol_cdev_open(struct inode *inode, struct file *file)$/;"	f	file:
+vol_cdev_read	cdev.c	/^static ssize_t vol_cdev_read(struct file *file, __user char *buf, size_t count,$/;"	f	file:
+vol_cdev_release	cdev.c	/^static int vol_cdev_release(struct inode *inode, struct file *file)$/;"	f	file:
+vol_cdev_write	cdev.c	/^static ssize_t vol_cdev_write(struct file *file, const char __user *buf,$/;"	f	file:
+vol_count	fastscan.h	/^	__be32		vol_count;$/;"	m	struct:fastscan_metadata_hdr
+vol_count	ubi.h	/^	int vol_count;$/;"	m	struct:ubi_device
+vol_id	fastscan.h	/^	__be32		vol_id;$/;"	m	struct:fastscan_metadata_vol_info
+vol_id	scan.h	/^	int vol_id;$/;"	m	struct:ubi_scan_volume
+vol_id	ubi-media.h	/^	__be32  vol_id;$/;"	m	struct:ubi_vid_hdr
+vol_id	ubi.h	/^	int vol_id;$/;"	m	struct:ubi_ltree_entry
+vol_id	ubi.h	/^	int vol_id;$/;"	m	struct:ubi_volume
+vol_id2idx	ubi.h	/^static inline int vol_id2idx(const struct ubi_device *ubi, int vol_id)$/;"	f
+vol_release	vmt.c	/^static void vol_release(struct device *dev)$/;"	f	file:
+vol_type	fastscan.h	/^	__u8		vol_type;$/;"	m	struct:fastscan_metadata_vol_info
+vol_type	scan.h	/^	int vol_type;$/;"	m	struct:ubi_scan_volume
+vol_type	ubi-media.h	/^	__u8    vol_type;$/;"	m	struct:ubi_vid_hdr
+vol_type	ubi-media.h	/^	__u8    vol_type;$/;"	m	struct:ubi_vtbl_record
+vol_type	ubi.h	/^	int vol_type;$/;"	m	struct:ubi_volume
+vols_found	scan.h	/^	int vols_found;$/;"	m	struct:ubi_scan_info
+volume_sysfs_close	vmt.c	/^static void volume_sysfs_close(struct ubi_volume *vol)$/;"	f	file:
+volume_sysfs_init	vmt.c	/^static int volume_sysfs_init(struct ubi_device *ubi, struct ubi_volume *vol)$/;"	f	file:
+volumes	scan.h	/^	struct rb_root volumes;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::rb_root
+volumes	ubi.h	/^	struct ubi_volume *volumes[UBI_MAX_VOLUMES+UBI_INT_VOL_COUNT];$/;"	m	struct:ubi_device	typeref:struct:ubi_device::ubi_volume
+volumes_lock	ubi.h	/^	spinlock_t volumes_lock;$/;"	m	struct:ubi_device
+volumes_mutex	ubi.h	/^	struct mutex volumes_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
+vtbl	ubi.h	/^	struct ubi_vtbl_record *vtbl;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::ubi_vtbl_record
+vtbl_check	vtbl.c	/^static int vtbl_check(const struct ubi_device *ubi,$/;"	f	file:
+vtbl_size	ubi.h	/^	int vtbl_size;$/;"	m	struct:ubi_device
+vtbl_slots	ubi.h	/^	int vtbl_slots;$/;"	m	struct:ubi_device
+wear_leveling_worker	wl.c	/^static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,$/;"	f	file:
+wl_lock	ubi.h	/^	spinlock_t wl_lock;$/;"	m	struct:ubi_device
+wl_scheduled	ubi.h	/^	int wl_scheduled;$/;"	m	struct:ubi_device
+wl_tree_add	wl.c	/^static void wl_tree_add(struct ubi_wl_entry *e, struct rb_root *root)$/;"	f	file:
+work_sem	ubi.h	/^	struct rw_semaphore work_sem;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::rw_semaphore
+works	ubi.h	/^	struct list_head works;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::list_head
+works_count	ubi.h	/^	int works_count;$/;"	m	struct:ubi_device
+write_leb	upd.c	/^static int write_leb(struct ubi_device *ubi, struct ubi_volume *vol, int lnum,$/;"	f	file:
+writers	ubi.h	/^	int writers;$/;"	m	struct:ubi_volume
