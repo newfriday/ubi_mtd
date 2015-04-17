@@ -196,7 +196,7 @@ erase_peb_count	fastscan.h	/^	__be32		erase_peb_count;$/;"	m	struct:fastscan_met
 erase_worker	wl.c	/^static int erase_worker(struct ubi_device *ubi, struct ubi_work *wl_wrk,$/;"	f	file:
 exclusive	ubi.h	/^	int exclusive;$/;"	m	struct:ubi_volume
 fastscan	fastscan.c	/^int fastscan(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
-fastscan_alloc_pebs	update.c	/^struct ubi_wl_entry* fastscan_alloc_pebs(struct ubi_device *ubi)$/;"	f
+fastscan_alloc_pebs	update.c	/^struct ubi_wl_entry *fastscan_alloc_pebs(struct ubi_device *ubi)$/;"	f
 fastscan_calc_fs_size	update.c	/^size_t fastscan_calc_fs_size(struct ubi_device *ubi)$/;"	f
 fastscan_create_scan_info	fastscan.c	/^int fastscan_create_scan_info(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
 fastscan_find_pebs	wl.c	/^struct ubi_wl_entry *fastscan_find_pebs(struct rb_root *root) $/;"	f
@@ -497,7 +497,7 @@ ubi_open_volume	kapi.c	/^struct ubi_volume_desc *ubi_open_volume(int ubi_num, in
 ubi_open_volume_nm	kapi.c	/^EXPORT_SYMBOL_GPL(ubi_open_volume_nm);$/;"	v
 ubi_open_volume_nm	kapi.c	/^struct ubi_volume_desc *ubi_open_volume_nm(int ubi_num, const char *name,$/;"	f
 ubi_put_device	build.c	/^void ubi_put_device(struct ubi_device *ubi)$/;"	f
-ubi_rb_for_each_entry	ubi.h	568;"	d
+ubi_rb_for_each_entry	ubi.h	574;"	d
 ubi_read_volume_table	vtbl.c	/^int ubi_read_volume_table(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
 ubi_remove_volume	vmt.c	/^int ubi_remove_volume(struct ubi_volume_desc *desc, int no_vtbl)$/;"	f
 ubi_rename_entry	ubi.h	/^struct ubi_rename_entry {$/;"	s

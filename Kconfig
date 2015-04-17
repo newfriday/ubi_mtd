@@ -63,5 +63,6 @@ config MTD_UBI_FASTSCAN
 	bool "UBI initialization fastscan option"
 	default n
 	depends on MTD_UBI
+
 source "drivers/mtd/ubi/Kconfig.debug"
 endmenu

@@ -108,6 +108,7 @@
 #include <linux/freezer.h>
 #include <linux/kthread.h>
 #include "ubi.h"
+#include "fastscan.h"
 
 /* Number of physical eraseblocks reserved for wear-leveling purposes */
 #define WL_RESERVED_PEBS 1
@@ -151,6 +152,7 @@
  * worker has to return zero in case of success and a negative error code in
  * case of failure.
  */
+#ifndef CONFIG_MTD_UBI_FASTSCAN
 struct ubi_work {
 	struct list_head list;
 	int (*func)(struct ubi_device *ubi, struct ubi_work *wrk, int cancel);
@@ -158,6 +160,7 @@ struct ubi_work {
 	struct ubi_wl_entry *e;
 	int torture;
 };
+#endif
 
 #ifdef CONFIG_MTD_UBI_DEBUG_PARANOID
 static int paranoid_check_ec(struct ubi_device *ubi, int pnum, int ec);
@@ -1612,30 +1615,36 @@ static int paranoid_check_in_pq(struct ubi_device *ubi, struct ubi_wl_entry *e)
 #endif /* CONFIG_MTD_UBI_DEBUG_PARANOID */
 
 #ifdef CONFIG_MTD_UBI_FASTSCAN
-struct ubi_wl_entry *fastscan_find_pebs(struct rb_root *root) 
+int fastscan_find_pebs(struct rb_root *root, struct ubi_wl_entry **pebs) 
 {
 	struct rb_node *p;
-	struct ubi_wl_entry *e, *pebs;
-	int count = 0;
-
-	pebs = kzalloc(UBI_FASTSCAN_PEB_COUNT * sizeof(struct ubi_wl_entry *), GFP_KERNEL);
-	if(!pebs)
-	{
-		ubi_msg("failed to alloc pebs");
-		return NULL;
-	}
+	struct ubi_wl_entry *e;
+	int i, count = 0;
 
 	ubi_msg("traverse the rb_tree to find available pebs");
 	ubi_rb_for_each_entry(p, e, root, u.rb)
 	{
 		if(e->pnum < UBI_FASTSCAN_END)	
+		{
+			pebs[count] = kzalloc(sizeof(struct ubi_wl_entry), GFP_KERNEL);
+			if(!pebs[count])
+			{
+				ubi_msg("failed to alloc pebs memory");
+				goto free;
+			}
 			pebs[count++] = e;	
+		}
+
 		if(count == UBI_FASTSCAN_PEB_COUNT - 1)
 		{
 			ubi_msg("find available pebs done!");
-			return pebs;
+			return 0;
 		}
 	}
+free:
+	for(i = 0; i < count; i++)
+		kfree(pebs[count]);
+	return -1;
 }
 #endif
 

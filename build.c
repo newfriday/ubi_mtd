@@ -42,7 +42,6 @@
 #include <linux/log2.h>
 #include <linux/kthread.h>
 
-#include <linux/time.h>
 #include "ubi.h"
 
 #include "fastscan.h"
@@ -496,11 +495,12 @@ static int attach_by_scanning(struct ubi_device *ubi)
 	unsigned long int sec_interval, nsec_interval;
 
 #ifdef CONFIG_MTD_UBI_FASTSCAN
+	ubi_msg("alloc ubi->fs_buf");
 	ubi->fs_size = fastscan_calc_fs_size(ubi);
-	ubi->fs_buf = vzalloc(ubi->fs_size);
+	ubi->fs_buf = (void *)vmalloc(ubi->fs_size);
 	if(!ubi->fs_buf)
 	{
-		err = -ENOMEM;	
+		ubi_msg("failed to alloc ubi->fs_buf");
 		goto out; 
 	}
 #endif
@@ -945,6 +945,7 @@ out_free:
  */
 int ubi_detach_mtd_dev(int ubi_num, int anyway)
 {
+	int ret;
 	struct ubi_device *ubi;
 
 	if (ubi_num < 0 || ubi_num >= UBI_MAX_DEVICES)
@@ -956,6 +957,16 @@ int ubi_detach_mtd_dev(int ubi_num, int anyway)
 		spin_unlock(&ubi_devices_lock);
 		return -EINVAL;
 	}
+
+#ifdef CONFIG_MTD_UBI_FASTSCAN
+	if(ubi_num == 0)
+	{
+		ubi_msg("update memtadata on Flash");	
+		ret = fastscan_update_metadata(ubi);
+		if(!ret)
+			ubi_msg("update memtadata failed");	
+	}
+#endif
 
 	if (ubi->ref_count) {
 		if (!anyway) {

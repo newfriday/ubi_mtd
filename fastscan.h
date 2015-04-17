@@ -59,6 +59,4 @@ struct fastscan_metadata_eba{
 	__be32		pnum[0];
 } __packed;
 
-/* update.c */
-size_t fastscan_calc_fs_size(struct ubi_device *ubi)
 

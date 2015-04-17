@@ -452,8 +452,8 @@ struct ubi_device {
 
 #ifdef CONFIG_MTD_UBI_FASTSCAN
 	void *fs_buf;
-	size_t *fs_size;
-	struct ubi_wl_entry *pebs;
+	size_t fs_size;
+	struct ubi_wl_entry **pebs;
 #endif
 };
 
@@ -522,6 +522,10 @@ int ubi_eba_copy_leb(struct ubi_device *ubi, int from, int to,
 		     struct ubi_vid_hdr *vid_hdr);
 int ubi_eba_init_scan(struct ubi_device *ubi, struct ubi_scan_info *si);
 
+#ifdef CONFIG_MTD_UBI_FASTSCAN
+unsigned long long next_sqnum(struct ubi_device *ubi);
+#endif
+
 /* wl.c */
 int ubi_wl_get_peb(struct ubi_device *ubi, int dtype);
 int ubi_wl_put_peb(struct ubi_device *ubi, int pnum, int torture);
@@ -530,13 +534,22 @@ int ubi_wl_scrub_peb(struct ubi_device *ubi, int pnum);
 int ubi_wl_init_scan(struct ubi_device *ubi, struct ubi_scan_info *si);
 void ubi_wl_close(struct ubi_device *ubi);
 int ubi_thread(void *u);
-#ifdef CONFIG_MTD_UBI_FASTSCAN
-/* fastscan-related function */
-struct ubi_wl_entry *fastscan_find_pebs(struct rb_root *root) 
 
-/* fastscan.c */
-int fastscan_update_metadata(struct ubi_device *ubi)
-size_t fastscan_calc_fs_size(struct ubi_device *ubi)
+#ifdef CONFIG_MTD_UBI_FASTSCAN
+struct ubi_work {
+	struct list_head list;
+	int (*func)(struct ubi_device *ubi, struct ubi_work *wrk, int cancel);
+	/* The below fields are only relevant to erasure works */
+	struct ubi_wl_entry *e;
+	int torture;
+};
+/* wl.c fastscan-related function */
+int fastscan_find_pebs(struct rb_root *root, struct ubi_wl_entry **pebs); 
+int ubi_is_erase_work(struct ubi_work *wrk);
+
+/* update.c */
+size_t fastscan_calc_fs_size(struct ubi_device *ubi);
+int fastscan_update_metadata(struct ubi_device *ubi);
 #endif
 
 /* io.c */

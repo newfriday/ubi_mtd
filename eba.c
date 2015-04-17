@@ -57,7 +57,11 @@
  * global sequence counter value. It also increases the global sequence
  * counter.
  */
+#ifdef CONFIG_MTD_UBI_FASTSCAN
+unsigned long long next_sqnum(struct ubi_device *ubi)
+#else
 static unsigned long long next_sqnum(struct ubi_device *ubi)
+#endif
 {
 	unsigned long long sqnum;
 

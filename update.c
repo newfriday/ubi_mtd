@@ -1,6 +1,7 @@
 #include <linux/math64.h>
 #include "ubi.h"
 #include "fastscan.h"
+
 /**
  	计算快扫描元数据长度，分配内存空间
  */
@@ -34,23 +35,22 @@ out:
 	return new;
 }
 
-struct ubi_wl_entry *fastscan_alloc_pebs(struct ubi_device *ubi)
+int fastscan_alloc_pebs(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 {
-	struct ubi_wl_entry *pebs;
-
-	pebs = fastscan_find_pebs(&ubi->free); 
-	if(!pebs)
+	int ret;
+	ret = fastscan_find_pebs(&ubi->free, pebs); 
+	if(!ret)
 	{
 		ubi_msg("failed to alloc pebs");
-		return NULL;
+		return -1;
 	}
-	return pebs;
+	return 0;
 }
 
-int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
+int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 {
 	/***********变量分配***********/
-	int ret, i, j;
+	int i, j, ret = 0;
 	void *fs_raw;
 	size_t fs_pos = 0;
 	struct ubi_vid_hdr *fs_vhdr;
@@ -187,12 +187,12 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 
 		fs_meta_vol_info->magic = cpu_to_be32(UBI_FASTSCAN_VOL_MAGIC);		
 		fs_meta_vol_info->vol_id = cpu_to_be32(vol->vol_id);		
-		fs_meta_vol_info->vol_type = vol_type;		
-		fs_meta_vol_info->used_pebs = cpu_to_be32(vol->used_pebs);		
+		fs_meta_vol_info->vol_type = vol->vol_type;		
+		fs_meta_vol_info->used_ebs = cpu_to_be32(vol->used_ebs);		
 		fs_meta_vol_info->data_pad = cpu_to_be32(vol->data_pad);		
 		fs_meta_vol_info->last_eb_bytes = cpu_to_be32(vol->last_eb_bytes);		
 		
-		ubi_assert(vol->vol_type == UBI_DYNAMIC_VOLUME || vol->type == UBI_STATIC_VOLUME);
+		ubi_assert(vol->vol_type == UBI_DYNAMIC_VOLUME || vol->vol_type == UBI_STATIC_VOLUME);
 
 		fs_meta_eba = (struct fastscan_metadata_eba *)(fs_raw + fs_pos);
 		fs_pos += sizeof(*fs_meta_eba);
@@ -213,7 +213,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	ubi_msg("writing fastscan volume header to Flash");
 	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
 	{
-		fs_vhdr->sqnum = cpu_to_be32(ubi_next_sqnum(ubi));
+		fs_vhdr->sqnum = cpu_to_be32(next_sqnum(ubi));
 		fs_vhdr->lnum = i;
 		ubi_msg("writing fastscan volume header to PEB %d, sqnum %llu", 
 						pebs[i]->pnum, fs_vhdr->sqnum);
@@ -248,16 +248,32 @@ out:
 	return ret;
 }
 /**
- *
+ *	更新元数据
+ *	返回值
+ *	成功：0
+ *	失败：无空闲PEB	-1
+ *		  写入失败	-2
  */
 int fastscan_update_metadata(struct ubi_device *ubi)
 {
-	struct ubi_wl_entry *pebs;
+	int i, ret;
+	struct ubi_wl_entry *pebs[UBI_FASTSCAN_PEB_COUNT];
 
-	pebs = fastscan_alloc_pebs(ubi);
-	if(!pebs)
+	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
+		pebs[i] = NULL;
+
+	ret = fastscan_alloc_pebs(ubi, pebs);
+	if(!ret)
 	{
-		return 
+		return	-1; 
 	}
+
+	ret = fastscan_write_metadata(ubi, pebs);
+	if(!ret)
+	{
+		ubi_msg("failed to update metadata ret %d", ret);	
+		return -2;
+	}
+	return ret;
 }
 
