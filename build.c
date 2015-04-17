@@ -45,6 +45,8 @@
 #include <linux/time.h>
 #include "ubi.h"
 
+#include "fastscan.h"
+
 /* Maximum length of the 'mtd=' parameter */
 #define MTD_PARAM_LEN_MAX 64
 

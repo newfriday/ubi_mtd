@@ -1610,3 +1610,32 @@ static int paranoid_check_in_pq(struct ubi_device *ubi, struct ubi_wl_entry *e)
 	return 1;
 }
 #endif /* CONFIG_MTD_UBI_DEBUG_PARANOID */
+
+#ifdef CONFIG_MTD_UBI_FASTSCAN
+struct ubi_wl_entry *fastscan_find_pebs(struct rb_root *root) 
+{
+	struct rb_node *p;
+	struct ubi_wl_entry *e, *pebs;
+	int count = 0;
+
+	pebs = kzalloc(UBI_FASTSCAN_PEB_COUNT * sizeof(struct ubi_wl_entry *), GFP_KERNEL);
+	if(!pebs)
+	{
+		ubi_msg("failed to alloc pebs");
+		return NULL;
+	}
+
+	ubi_msg("traverse the rb_tree to find available pebs");
+	ubi_rb_for_each_entry(p, e, root, u.rb)
+	{
+		if(e->pnum < UBI_FASTSCAN_END)	
+			pebs[count++] = e;	
+		if(count == UBI_FASTSCAN_PEB_COUNT - 1)
+		{
+			ubi_msg("find available pebs done!");
+			return pebs;
+		}
+	}
+}
+#endif
+
