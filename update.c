@@ -36,10 +36,13 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 	struct rb_node *node;
 	struct ubi_wl_entry *wl_e;
 	struct ubi_work *ubi_wrk;
+	struct ubi_volume *vol;
 
 	struct fastscan_metadata_hdr *fs_meta_hdr;
 	int free_peb_count, used_peb_count, scrub_peb_count, erase_peb_count, vol_count; 
 	struct fastscan_metadata_wl *fs_meta_wl;
+	struct fastscan_metadata_vol_info *fs_meta_vol_info;
+	struct fastscan_metadata_eba *fs_meta_eba;
 
 	/***********写缓冲区初始化***********/
 	fs_raw = ubi->fs_buf;
@@ -130,6 +133,37 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry *pebs)
 		}
 	}
 	fs_meta_hdr->erase_peb_count = cpu_to_be32(erase_peb_count);
+
+	/***********collect volume-related metadata to fullfill the fs_raw***********/
+	for(i = 0; i < UBI_MAX_VOLUMES + UBI_INT_VOL_COUNT; i++)
+	{
+		vol = ubi->volumes[i];
+		
+		if(!vol)
+			continue;
+
+		vol_count++;
+		fs_meta_vol_info = (struct fastscan_metadata_vol_info *)(fs_raw + fs_pos);
+		fs_pos += sizeof(*fs_meta_vol_info);
+
+		fs_meta_vol_info->magic = cpu_to_be32(UBI_FASTSCAN_VOL_MAGIC);		
+		fs_meta_vol_info->vol_id = cpu_to_be32(vol->vol_id);		
+		fs_meta_vol_info->vol_type = vol_type;		
+		fs_meta_vol_info->used_pebs = cpu_to_be32(vol->used_pebs);		
+		fs_meta_vol_info->data_pad = cpu_to_be32(vol->data_pad);		
+		fs_meta_vol_info->last_eb_bytes = cpu_to_be32(vol->last_eb_bytes);		
+		
+		ubi_assert(vol->vol_type == UBI_DYNAMIC_VOLUME || vol->type == UBI_STATIC_VOLUME);
+
+		fs_meta_eba = (struct fastscan_metadata_eba *)(fs_raw + fs_pos);
+		fs_pos += sizeof(*fs_meta_eba);
+
+		fs_meta_eba->magic = cpu_to_be32(UBI_FASTSCAN_EBA_MAGIC);
+		for(j = 0; j < vol->reserved_pebs; j++)
+			fs_meta_eba->pnum[j] = cpu_to_be32(vol->eba_tbl[j]);
+		fs_meta_eba->peb_num = cpu_to_be32(j);
+	}
+	fs_meta_hdr->vol_count = cpu_to_be32(vol_count);
 
 out_kfree:
 	ubi_free_vid_hdr(ubi, fs_vhdr);
