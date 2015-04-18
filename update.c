@@ -110,6 +110,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	for(node = rb_first(&ubi->free); node; node = rb_next(node))
 	{
 		wl_e = rb_entry(node, struct ubi_wl_entry, u.rb);
+		ubi_assert(wl_e);
 		fs_meta_wl = (struct fastscan_metadata_wl *)(fs_raw + fs_pos);	
 		
 		fs_meta_wl->pnum = cpu_to_be32(wl_e->pnum);
@@ -125,6 +126,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	for(node = rb_first(&ubi->used); node; node = rb_next(node))
 	{
 		wl_e = rb_entry(node, struct ubi_wl_entry, u.rb);
+		ubi_assert(wl_e);
 		fs_meta_wl = (struct fastscan_metadata_wl *)(fs_raw + fs_pos);	
 		
 		fs_meta_wl->pnum = cpu_to_be32(wl_e->pnum);
@@ -140,6 +142,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	for(node = rb_first(&ubi->scrub); node; node = rb_next(node))
 	{
 		wl_e = rb_entry(node, struct ubi_wl_entry, u.rb);
+		ubi_assert(wl_e);
 		fs_meta_wl = (struct fastscan_metadata_wl *)(fs_raw + fs_pos);	
 		
 		fs_meta_wl->pnum = cpu_to_be32(wl_e->pnum);
@@ -250,9 +253,9 @@ out:
 /**
  *	更新元数据
  *	返回值
- *	成功：0
- *	失败：无空闲PEB	-1
- *		  写入失败	-2
+ *	成功：			0
+ *	失败：	无空闲PEB	-1
+ *		写入失败	-2
  */
 int fastscan_update_metadata(struct ubi_device *ubi)
 {
