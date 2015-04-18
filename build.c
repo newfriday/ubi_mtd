@@ -538,6 +538,12 @@ static int attach_by_scanning(struct ubi_device *ubi)
 		goto out_wl;
 
 	ubi_scan_destroy_si(si);
+#ifdef CONFIG_MTD_UBI_FASTSCAN
+	ubi_msg("update memtadata on Flash");	
+	err = fastscan_update_metadata(ubi);
+	if(!err)
+		ubi_msg("update memtadata failed");	
+#endif
 	return 0;
 
 out_wl:
@@ -948,6 +954,7 @@ int ubi_detach_mtd_dev(int ubi_num, int anyway)
 	int ret;
 	struct ubi_device *ubi;
 
+	ubi_msg("ubi detach mtd device");	
 	if (ubi_num < 0 || ubi_num >= UBI_MAX_DEVICES)
 		return -EINVAL;
 
@@ -1128,6 +1135,7 @@ static void __exit ubi_exit(void)
 {
 	int i;
 
+	ubi_msg("ubi exit");
 	for (i = 0; i < UBI_MAX_DEVICES; i++)
 		if (ubi_devices[i]) {
 			mutex_lock(&ubi_devices_mutex);
