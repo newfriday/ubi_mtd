@@ -453,6 +453,7 @@ struct ubi_device {
 #ifdef CONFIG_MTD_UBI_FASTSCAN
 	void *fs_buf;
 	size_t fs_size;
+	int used_blocks;
 	struct ubi_wl_entry **pebs;
 #endif
 };

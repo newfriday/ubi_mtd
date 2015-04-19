@@ -2,6 +2,7 @@
 #include "ubi.h"
 #include "fastscan.h"
 
+struct ubi_wl_entry *pebs[UBI_FASTSCAN_PEB_COUNT];
 /**
  	计算快扫描元数据长度，分配内存空间
  */
@@ -38,6 +39,7 @@ out:
 int fastscan_alloc_pebs(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 {
 	int ret;
+
 	ret = fastscan_find_pebs(&ubi->free, pebs); 
 	if(ret != 0)
 	{
@@ -65,6 +67,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	int erase_peb_count;
 	int bad_peb_count; 
 	int vol_count; 
+	int used_blocks;
 
 	struct fastscan_metadata_hdr *fs_meta_hdr;
 	struct fastscan_metadata_wl *fs_meta_wl;
@@ -77,6 +80,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 
 	fs_raw = ubi->fs_buf;
 	memset(ubi->fs_buf, 0, ubi->fs_size);
+	ubi_msg("fs_size %d", ubi->fs_size);
 
 	/***********分配元数据内部卷头部***********/
 	ubi_msg("alloc fastscan volume header");
@@ -104,6 +108,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	erase_peb_count = 0;
 	bad_peb_count = 0;
 	vol_count = 0;
+	used_blocks = ubi->fs_size / ubi->leb_size;
 
 	/***********收集free红黑树的擦除信息填充到fs_raw,同时累加空闲的擦出块数***********/
 	ubi_msg("collect pnum and ec data of free PEB from free red black tree");
@@ -207,14 +212,16 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	}
 	fs_meta_hdr->vol_count = cpu_to_be32(vol_count);
 	fs_meta_hdr->bad_peb_count = cpu_to_be32(ubi->bad_peb_count);
+	fs_meta_hdr->used_blocks = cpu_to_be32(used_blocks);
+
 	ubi_msg("collect data done!");
 
 	spin_unlock(&ubi->wl_lock);
 	spin_unlock(&ubi->volumes_lock);
 
-	/***********写卷头部到4个PEB***********/
+	/***********写卷头部到used_blocks个PEB中去***********/
 	ubi_msg("writing fastscan volume header to Flash");
-	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
+	for(i = 0; i < used_blocks; i++)
 	{
 		fs_vhdr->sqnum = cpu_to_be32(next_sqnum(ubi));
 		fs_vhdr->lnum = i;
@@ -228,10 +235,11 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 		}
 	}
 	
-	/***********写元数据到4个PEB***********/
-	ubi_msg("writing fastscan data to Flash");
-	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
+	/***********写元数据到used_blocks个PEB中去***********/
+	ubi_msg("writing fastscan data to Flash %d blocks", used_blocks);
+	for(i = 0; i < used_blocks; i++)
 	{
+		ubi_msg("writing fs_raw data to PEB %d", pebs[i]->pnum);
 		ret = ubi_io_write(ubi, fs_raw + (i * ubi->leb_size), 
 						pebs[i]->pnum, ubi->leb_start, ubi->leb_size);	
 		if(ret != 0)
@@ -240,9 +248,16 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 			goto out_kfree;
 		}
 	}
-	
+	/*
+	for(i = used_blocks; i < UBI_FASTSCAN_PEB_COUNT; i++)
+	{
+		ret = ubi_wl_put_peb(ubi, pebs[i]->pnum, 0);
+	}
+	*/	
+
 	ubi_assert(pebs);
 	ubi->pebs = pebs;
+	ubi->used_blocks = used_blocks;
 	ubi_msg("write fastscan done!");
 
 out_kfree:
@@ -260,7 +275,6 @@ out:
 int fastscan_update_metadata(struct ubi_device *ubi)
 {
 	int i, ret;
-	struct ubi_wl_entry *pebs[UBI_FASTSCAN_PEB_COUNT];
 
 	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
 		pebs[i] = NULL;

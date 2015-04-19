@@ -495,7 +495,6 @@ static int attach_by_scanning(struct ubi_device *ubi)
 	unsigned long int sec_interval, nsec_interval;
 
 #ifdef CONFIG_MTD_UBI_FASTSCAN
-	ubi_msg("alloc ubi->fs_buf");
 	ubi->fs_size = fastscan_calc_fs_size(ubi);
 	ubi->fs_buf = (void *)vmalloc(ubi->fs_size);
 	if(!ubi->fs_buf)
@@ -503,6 +502,7 @@ static int attach_by_scanning(struct ubi_device *ubi)
 		ubi_msg("failed to alloc ubi->fs_buf");
 		goto out; 
 	}
+	ubi_msg("alloc ubi->fs_buf, size %d", ubi->fs_size);
 #endif
 	tns = current_kernel_time();
 	sec = tns.tv_sec;
@@ -541,7 +541,7 @@ static int attach_by_scanning(struct ubi_device *ubi)
 #ifdef CONFIG_MTD_UBI_FASTSCAN
 	ubi_msg("update memtadata on Flash");	
 	err = fastscan_update_metadata(ubi);
-	if(!err)
+	if(err != 0)
 		ubi_msg("update memtadata failed");	
 #endif
 	return 0;

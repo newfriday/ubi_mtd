@@ -1635,7 +1635,7 @@ int fastscan_find_pebs(struct rb_root *root, struct ubi_wl_entry **pebs)
 			pebs[count++] = e;	
 		}
 
-		if(count == UBI_FASTSCAN_PEB_COUNT - 1)
+		if(count == UBI_FASTSCAN_PEB_COUNT)
 		{
 			ubi_msg("find available pebs done!");
 			return 0;
