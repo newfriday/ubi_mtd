@@ -39,7 +39,7 @@ int fastscan_alloc_pebs(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 {
 	int ret;
 	ret = fastscan_find_pebs(&ubi->free, pebs); 
-	if(!ret)
+	if(ret != 0)
 	{
 		ubi_msg("failed to alloc pebs");
 		return -1;
@@ -221,7 +221,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 		ubi_msg("writing fastscan volume header to PEB %d, sqnum %llu", 
 						pebs[i]->pnum, fs_vhdr->sqnum);
 		ret = ubi_io_write_vid_hdr(ubi, pebs[i]->pnum, fs_vhdr);
-		if(!ret)
+		if(ret != 0)
 		{
 			ubi_msg("failed to write fs_vhdr to PEB %i",pebs[i]->pnum); 
 			goto out_kfree;
@@ -234,7 +234,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	{
 		ret = ubi_io_write(ubi, fs_raw + (i * ubi->leb_size), 
 						pebs[i]->pnum, ubi->leb_start, ubi->leb_size);	
-		if(!ret)
+		if(ret != 0)
 		{
 			ubi_msg("failed to write data to PEB %i",pebs[i]->pnum); 
 			goto out_kfree;
@@ -266,13 +266,16 @@ int fastscan_update_metadata(struct ubi_device *ubi)
 		pebs[i] = NULL;
 
 	ret = fastscan_alloc_pebs(ubi, pebs);
-	if(!ret)
+	if(ret != 0)
 	{
 		return	-1; 
 	}
+	ubi_msg("find available pebs");	
+	for(i = 0; i < UBI_FASTSCAN_PEB_COUNT; i++)
+		ubi_msg("pebs[%d] = %d", i, pebs[i]->pnum);
 
 	ret = fastscan_write_metadata(ubi, pebs);
-	if(!ret)
+	if(ret != 0)
 	{
 		ubi_msg("failed to update metadata ret %d", ret);	
 		return -2;
