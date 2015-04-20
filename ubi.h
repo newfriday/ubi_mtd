@@ -546,7 +546,7 @@ struct ubi_work {
 };
 /* wl.c fastscan-related function */
 int fastscan_find_pebs(struct rb_root *root, struct ubi_wl_entry **pebs); 
-int ubi_is_erase_work(struct ubi_work *wrk);
+int fastscan_is_erase_work(struct ubi_work *wrk);
 
 /* update.c */
 size_t fastscan_calc_fs_size(struct ubi_device *ubi);

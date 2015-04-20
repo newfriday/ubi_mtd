@@ -26,7 +26,7 @@ struct fastscan_metadata_hdr{
 	__be32		erase_peb_count;
 	__be32		bad_peb_count;
 	__be32		vol_count;
-	__u8		padding[4];
+	__be32		used_blocks;
 } __packed;
 
 /**

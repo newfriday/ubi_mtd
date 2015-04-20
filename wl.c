@@ -615,7 +615,7 @@ static int erase_worker(struct ubi_device *ubi, struct ubi_work *wl_wrk,
 			int cancel);
 
 #ifdef CONFIG_MTD_UBI_FASTSCAN
-int ubi_is_erase_work(struct ubi_work *wrk)
+int fastscan_is_erase_work(struct ubi_work *wrk)
 {
 	return wrk->func == erase_worker;
 }

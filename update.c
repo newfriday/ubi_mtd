@@ -163,7 +163,7 @@ int fastscan_write_metadata(struct ubi_device *ubi, struct ubi_wl_entry **pebs)
 	ubi_msg("collect pnum and ec data of erase PEB from WL subsystem work queue");
 	list_for_each_entry(ubi_wrk, &ubi->works, list)
 	{
-		if(ubi_is_erase_work(ubi_wrk))
+		if(fastscan_is_erase_work(ubi_wrk))
 		{
 			wl_e = ubi_wrk->e;
 			ubi_assert(wl_e);
