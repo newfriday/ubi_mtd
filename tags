@@ -76,7 +76,10 @@ __packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_eba
 __packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_hdr
 __packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_vol_info
 __packed	fastscan.h	/^} __packed;$/;"	v	typeref:struct:fastscan_metadata_wl
+add_peb_to_list	fastscan.c	/^static int add_peb_to_list(struct ubi_scan_info *si, struct list_head *list, $/;"	f	file:
+add_scan_eb_to_vol	fastscan.c	/^static void add_scan_eb_to_vol(struct ubi_scan_info *si, struct ubi_scan_leb *scan_eb, $/;"	f	file:
 add_to_list	scan.c	/^static int add_to_list(struct ubi_scan_info *si, int pnum, int ec,$/;"	f	file:
+add_vol_to_rbtree	fastscan.c	/^static struct ubi_scan_volume *add_vol_to_rbtree(struct ubi_scan_info *si, int vol_id,$/;"	f	file:
 add_volume	scan.c	/^static struct ubi_scan_volume *add_volume(struct ubi_scan_info *si, int vol_id,$/;"	f	file:
 alc_mutex	ubi.h	/^	struct mutex alc_mutex;$/;"	m	struct:ubi_device	typeref:struct:ubi_device::mutex
 alien	scan.h	/^	struct list_head alien;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::list_head
@@ -123,6 +126,7 @@ compat	ubi-media.h	/^	__u8    compat;$/;"	m	struct:ubi_vid_hdr
 copy_flag	ubi-media.h	/^	__u8    copy_flag;$/;"	m	struct:ubi_vid_hdr
 corr	scan.h	/^	struct list_head corr;$/;"	m	struct:ubi_scan_info	typeref:struct:ubi_scan_info::list_head
 corrupted	ubi.h	/^	unsigned int corrupted:1;$/;"	m	struct:ubi_volume
+count_pebs	fastscan.c	/^static int count_pebs(struct ubi_scan_info *si)$/;"	f	file:
 crc	ubi-media.h	/^	__be32  crc;$/;"	m	struct:ubi_vtbl_record
 create_empty_lvol	vtbl.c	/^static struct ubi_vtbl_record *create_empty_lvol(struct ubi_device *ubi,$/;"	f	file:
 create_vtbl	vtbl.c	/^static int create_vtbl(struct ubi_device *ubi, struct ubi_scan_info *si,$/;"	f	file:
@@ -206,7 +210,7 @@ fastscan_metadata_hdr	fastscan.h	/^struct fastscan_metadata_hdr{$/;"	s
 fastscan_metadata_vol_info	fastscan.h	/^struct fastscan_metadata_vol_info{$/;"	s
 fastscan_metadata_wl	fastscan.h	/^struct fastscan_metadata_wl{$/;"	s
 fastscan_read_vid_hdr	fastscan.c	/^int fastscan_read_vid_hdr(struct ubi_device *ubi, int pnum, $/;"	f
-fastscan_rebuild_scan_info	fastscan.c	/^int fastscan_rebuild_scan_info(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f
+fastscan_rebuild_scan_info	fastscan.c	/^static int fastscan_rebuild_scan_info(struct ubi_device *ubi, struct ubi_scan_info *si)$/;"	f	file:
 fastscan_scan	fastscan.c	/^int fastscan_scan(struct ubi_device *ubi, int *pebs) $/;"	f
 fastscan_scan_peb	fastscan.c	/^int fastscan_scan_peb(struct ubi_device *ubi, int pnum, int *vid)$/;"	f
 fastscan_update_metadata	update.c	/^int fastscan_update_metadata(struct ubi_device *ubi)$/;"	f
