@@ -509,8 +509,14 @@ static int attach_by_scanning(struct ubi_device *ubi)
 	nsec = tns.tv_nsec;
 
 #ifdef CONFIG_MTD_UBI_FASTSCAN
-	si = ubi_scan(ubi);
-
+	if(fastscan(ubi, si) != 0)
+	{
+		si = NULL;	
+		si = ubi_scan(ubi);
+	}
+#else
+		si = ubi_scan(ubi);
+#endif
 	tns = current_kernel_time();
 	sec1 = tns.tv_sec;
 	nsec1 = tns.tv_nsec;

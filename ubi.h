@@ -552,6 +552,9 @@ int fastscan_is_erase_work(struct ubi_work *wrk);
 /* update.c */
 size_t fastscan_calc_fs_size(struct ubi_device *ubi);
 int fastscan_update_metadata(struct ubi_device *ubi);
+
+/* fastscan.c */
+int fastscan(struct ubi_device *ubi, struct ubi_scan_info *si);
 #endif
 
 /* io.c */
