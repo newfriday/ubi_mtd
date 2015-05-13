@@ -101,6 +101,7 @@ enum {
 };
 
 /**
+ * 每个WL子系统中的PEB，要么用红黑数来组织，要么用链表来组织
  * struct ubi_wl_entry - wear-leveling entry.
  * @u.rb: link in the corresponding (free/used) RB-tree
  * @u.list: link in the protection queue

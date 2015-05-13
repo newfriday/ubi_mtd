@@ -397,13 +397,13 @@ out:
 	成功：0
 	失败：负数
  */
-int fastscan(struct ubi_device *ubi, struct ubi_scan_info **si)
+int fastscan(struct ubi_device *ubi, struct ubi_scan_info *si)
 {
 	int i, ret, vid; 
 	int pebs[UBI_FASTSCAN_PEB_COUNT];
 
-	*si = (struct ubi_scan_info *)kzalloc(sizeof(struct ubi_scan_info), GFP_KERNEL);
-	if((*si) == NULL)
+	si = (struct ubi_scan_info *)kzalloc(sizeof(struct ubi_scan_info), GFP_KERNEL);
+	if(si == NULL)
 	{
 		ubi_msg("failed to alloc memory for ubi_scan_info");	
 		return -1;
@@ -426,7 +426,7 @@ int fastscan(struct ubi_device *ubi, struct ubi_scan_info **si)
 			ubi_msg("failed to scan metadata");	
 			return ret;
 		}
-		ret = fastscan_rebuild_scan_info(ubi, (*si));
+		ret = fastscan_rebuild_scan_info(ubi, si);
 		if(ret != 0)
 		{
 			ubi_msg("failed to rebuild scan info");	

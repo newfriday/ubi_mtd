@@ -27,15 +27,24 @@
  * eraseblocks are of two types - used and free. Used physical eraseblocks are
  * those that were "get" by the 'ubi_wl_get_peb()' function, and free physical
  * eraseblocks are those that were put by the 'ubi_wl_put_peb()' function.
- *
+ * 
+ * 从WL子系统拿出到(通过ubi_wl_get_peb())外部其余子系统的PEB只包含EC头,其余为0XFF
  * Physical eraseblocks returned by 'ubi_wl_get_peb()' have only erase counter
  * header. The rest of the physical eraseblock contains only %0xFF bytes.
  *
+ * 送回WL子系统(通过ubi_wl_put_peb())的PEB会被擦除,擦除工作由每个UBI device独有
+ * 的后台线程负责,该线程由WL子系统负责管理
  * When physical eraseblocks are returned to the WL sub-system by means of the
  * 'ubi_wl_put_peb()' function, they are scheduled for erasure. The erasure is
  * done asynchronously in context of the per-UBI device background thread,
  * which is also managed by the WL sub-system.
  *
+ * 损耗均衡通过将(擦除次数少的已使用的)PEB上的数据搬移到(擦出次数多的空闲的)PEB
+ * 上来完成
+ * 搬移:	used PEB with low EC	->	free PEB with low EC
+ * 			free PEB with high EC	->	used PEB with high EC
+ * 搬移之后次数少的擦除块变为可用的(free)了，次数多的擦除块变为不可用的(used)了
+ * 而外部子系统要申请PEB时WL子系统都是从可用的里面去找
  * The wear-leveling is ensured by means of moving the contents of used
  * physical eraseblocks with low erase counter to free physical eraseblocks
  * with high erase counter.
@@ -58,6 +67,10 @@
  * used eraseblocks are kept in @wl->used or @wl->scrub RB-trees, or
  * (temporarily) in the @wl->pq queue.
  *
+ * 从WL子系统中拿出来(通过wl_ubi_get_peb())的PEB，可以写数据，但是要过一段时间才能
+ * 搬移。因为数据搬移意味着要么在进行"垃圾回收"要么在进行"损耗均衡"，只有这两种情况
+ * 才会搬移数据。被搬移数据的PEB又变为了free的PEB。
+ * 从WL子系统中刚拿出来的PEB，就写了一会儿，又送回去让其重新变成可用的。不合理！
  * When the WL sub-system returns a physical eraseblock, the physical
  * eraseblock is protected from being moved for some "time". For this reason,
  * the physical eraseblock is not directly moved from the @wl->free tree to the
@@ -141,9 +154,12 @@
 #define WL_MAX_FAILURES 32
 
 /**
+ * 工作类型可以是擦除工作，也可以是损耗均衡工作
+ * 两者分别由erase_worker()和wear_leveling_worker()实现
  * struct ubi_work - UBI work description data structure.
  * @list: a link in the list of pending works
  * @func: worker function
+ * 如果工作的类型是擦除工作,e就是要擦除的对象
  * @e: physical eraseblock to erase
  * @torture: if the physical eraseblock has to be tortured
  *
@@ -154,7 +170,7 @@
  */
 #ifndef CONFIG_MTD_UBI_FASTSCAN
 struct ubi_work {
-	struct list_head list;
+	struct list_head list;	/* 用于链入ubi_device -> works成员 */	
 	int (*func)(struct ubi_device *ubi, struct ubi_work *wrk, int cancel);
 	/* The below fields are only relevant to erasure works */
 	struct ubi_wl_entry *e;
@@ -213,6 +229,9 @@ static void wl_tree_add(struct ubi_wl_entry *e, struct rb_root *root)
  * do_work - do one pending work.
  * @ubi: UBI device description object
  *
+ * 使用ubi_device中的工作链表成员进行一次"工作"
+ * 工作的类型擦除(erase_worker)，也可能是(wear_leveling_worker)
+ * 也可能是其它
  * This function returns zero in case of success and a negative error code in
  * case of failure.
  */
@@ -257,6 +276,7 @@ static int do_work(struct ubi_device *ubi)
 }
 
 /**
+ * 让ubi_device中的工作链表中的成员都工作一次，以达到产生可用PEB的目的
  * produce_free_peb - produce a free physical eraseblock.
  * @ubi: UBI device description object
  *
@@ -336,6 +356,10 @@ static int in_wl_tree(struct ubi_wl_entry *e, struct rb_root *root)
  */
 static void prot_queue_add(struct ubi_device *ubi, struct ubi_wl_entry *e)
 {
+	/* pq_head对应的链表中的PEB受保护的时间最长		*/
+	/* pq_head+1对应的链表中的PEB受保护的时间次长	*/
+	/* . . . 										*/
+	/* pq_tail对应的链表中的PEB受保护的时间最短		*/
 	int pq_tail = ubi->pq_head - 1;
 
 	if (pq_tail < 0)
@@ -357,8 +381,9 @@ static struct ubi_wl_entry *find_wl_entry(struct rb_root *root, int max)
 {
 	struct rb_node *p;
 	struct ubi_wl_entry *e;
-
+	/* 首先找到擦除次数最少的PEB */
 	e = rb_entry(rb_first(root), struct ubi_wl_entry, u.rb);
+	/* 要找的PEB必须在 PEBwlEC(PEB-with-lowest-EC) ~ PEBwlEC + max 之间*/
 	max += e->ec;
 
 	p = root->rb_node;
@@ -413,6 +438,7 @@ retry:
 	switch (dtype) {
 	case UBI_LONGTERM:
 		/*
+		 * 对于静态类型数据，找擦除次数最多的PEB(最低擦除次数 + 2倍的损耗均衡阈值)
 		 * For long term data we pick a physical eraseblock with high
 		 * erase counter. But the highest erase counter we can pick is
 		 * bounded by the the lowest erase counter plus
@@ -422,6 +448,8 @@ retry:
 		break;
 	case UBI_UNKNOWN:
 		/*
+		 * 对于不知类型的数据，找擦除次数在中间的PEB。
+		 * 但不能找大于等于阈值上限的PEB
 		 * For unknown data we pick a physical eraseblock with medium
 		 * erase counter. But we by no means can pick a physical
 		 * eraseblock with erase counter greater or equivalent than the
@@ -432,6 +460,7 @@ retry:
 		last = rb_entry(rb_last(&ubi->free), struct ubi_wl_entry, u.rb);
 
 		if (last->ec - first->ec < WL_FREE_MAX_DIFF)
+			/* 红黑树的第一个节点正好是EC在中间的，所以直接取第一个节点 */
 			e = rb_entry(ubi->free.rb_node,
 					struct ubi_wl_entry, u.rb);
 		else {
@@ -464,6 +493,8 @@ retry:
 }
 
 /**
+ * 该函数只是将PEB从保护队列数组的一个元素对应的一条链表中删除
+ * 解除保护的对象是PEB
  * prot_queue_del - remove a physical eraseblock from the protection queue.
  * @ubi: UBI device description object
  * @pnum: the physical eraseblock to remove
@@ -549,6 +580,7 @@ out_free:
 }
 
 /**
+ * 停止对PEB的保护
  * serve_prot_queue - check if it is time to stop protecting PEBs.
  * @ubi: UBI device description object
  *
@@ -574,6 +606,7 @@ repeat:
 
 		list_del(&e->u.list);
 		wl_tree_add(e, &ubi->used);
+		/* 如果删除了33个PEB，耗时过长，请求调度，之后再次被调度时再删 */
 		if (count++ > 32) {
 			/*
 			 * Let's be nice and avoid holding the spinlock for
@@ -593,6 +626,7 @@ repeat:
 }
 
 /**
+ * 将一个工作成员加入到ubi_device的工作链表
  * schedule_ubi_work - schedule a work.
  * @ubi: UBI device description object
  * @wrk: the work to schedule
@@ -622,6 +656,7 @@ int fastscan_is_erase_work(struct ubi_work *wrk)
 #endif
 
 /**
+ * 将工作类型为擦除类型的工作成员加入到工作链表中
  * schedule_erase - schedule an erase work.
  * @ubi: UBI device description object
  * @e: the WL entry of the physical eraseblock to erase
@@ -679,7 +714,11 @@ static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,
 	spin_lock(&ubi->wl_lock);
 	ubi_assert(!ubi->move_from && !ubi->move_to);
 	ubi_assert(!ubi->move_to_put);
-
+	/** 
+	 * 没有空闲的块可以用于存放数据，放弃搬移
+	 * 或者所有的块都放在了保护队列中，而我们约定保护队列中的PEB
+	 * 不能搬移，所以也放弃
+	 */
 	if (!ubi->free.rb_node ||
 	    (!ubi->used.rb_node && !ubi->scrub.rb_node)) {
 		/*
@@ -777,6 +816,9 @@ static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,
 		}
 
 		/*
+		 * 如果PEB所属的卷都没有了，进行数据搬移没有意义
+		 * 同样如果PEB被放入WL子系统，说明其上数据没有用了，可以直接擦除
+		 * 不用搬移
 		 * The LEB has not been moved because the volume is being
 		 * deleted or the PEB has been put meanwhile. We should prevent
 		 * this PEB from being selected for wear-leveling movement
@@ -812,6 +854,11 @@ static int wear_leveling_worker(struct ubi_device *ubi, struct ubi_work *wrk,
 			e1->pnum, e2->pnum);
 
 	spin_lock(&ubi->wl_lock);
+	/**
+	 * move_to_put表示将目标PEB也put到WL子系统
+	 * 意思就是要将它擦除，所以如果move_to_put置位
+	 * 将目标PEB也擦除
+	 */
 	if (!ubi->move_to_put) {
 		wl_tree_add(e2, &ubi->used);
 		e2 = NULL;
@@ -961,6 +1008,7 @@ out_unlock:
 }
 
 /**
+ * 工作类型为擦除工作所调用的函数
  * erase_worker - physical eraseblock erase worker function.
  * @ubi: UBI device description object
  * @wl_wrk: the work object
